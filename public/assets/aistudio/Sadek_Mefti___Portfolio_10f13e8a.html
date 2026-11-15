@@ -1,0 +1,1243 @@
+<!doctype html>
+<html lang="en" data-palette="signal">
+<head>
+<meta charset="utf-8" data-site>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" data-site>
+<title data-site>Sadek Mefti, technical solutions lead for robotics, AI and automation</title>
+<meta name="description" content="Portfolio and resume of Sadek Mefti, a Dubai-based technical solutions lead who deploys autonomous robot fleets and builds AI and automation for enterprise clients." data-site>
+<link rel="preconnect" href="https://fonts.googleapis.com" data-site>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin data-site>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap" rel="stylesheet" data-site>
+<style id="site-css">
+/* ---------- tokens ----------
+   Neutrals carry the page. One palette colors the hero, the closing band and the marks.
+   Three palettes ship: signal (default), cobalt, concrete. The owner picks one in edit mode. */
+:root{
+  --page:#FFFFFF; --panel:#F3F3F0; --ink:#101010; --muted:#595955; --line:#D8D8D3;
+  --art-bg:#E8E8E4; --art-sheen:rgba(255,255,255,.9); --shadow:rgba(0,0,0,.2);
+
+  /* signal: wet-floor-sign yellow and black */
+  --hero-bg-l:#FFD400; --hero-bg-d:#FFD400;
+  --hero-ink-l:#101010; --hero-ink-d:#101010;
+  --hero-muted-l:#3A3405; --hero-muted-d:#3A3405;
+  --hero-sheen-l:rgba(255,255,255,.5); --hero-sheen-d:rgba(255,255,255,.5);
+  --hero-trace-l:rgba(16,16,16,.5); --hero-trace-d:rgba(16,16,16,.5);
+  --bot-l:#101010; --bot-d:#101010;
+  --beacon-l:#FFFFFF; --beacon-d:#FFFFFF;
+  --hi-l:#FFD400; --hi-d:#FFD400;
+  --hi-ink-l:#101010; --hi-ink-d:#101010;
+  --mark-l:#101010; --mark-d:#FFD400;
+
+  --hero-bg:var(--hero-bg-l); --hero-ink:var(--hero-ink-l); --hero-muted:var(--hero-muted-l);
+  --hero-sheen:var(--hero-sheen-l); --hero-trace:var(--hero-trace-l);
+  --bot:var(--bot-l); --beacon:var(--beacon-l);
+  --hi:var(--hi-l); --hi-ink:var(--hi-ink-l); --mark:var(--mark-l);
+
+  --header-h:60px;
+  --gut:clamp(20px,5vw,72px);
+  --body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --display:"Archivo","Arial Narrow","Helvetica Neue",Arial,sans-serif;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+:root[data-palette="cobalt"]{
+  --hero-bg-l:#0047BB; --hero-bg-d:#0047BB;
+  --hero-ink-l:#FFFFFF; --hero-ink-d:#FFFFFF;
+  --hero-muted-l:#D8E2F6; --hero-muted-d:#D8E2F6;
+  --hero-sheen-l:rgba(255,255,255,.14); --hero-sheen-d:rgba(255,255,255,.14);
+  --hero-trace-l:rgba(255,255,255,.55); --hero-trace-d:rgba(255,255,255,.55);
+  --bot-l:#FFFFFF; --bot-d:#FFFFFF;
+  --beacon-l:#FFD400; --beacon-d:#FFD400;
+  --hi-l:#0047BB; --hi-d:#0047BB;
+  --hi-ink-l:#FFFFFF; --hi-ink-d:#FFFFFF;
+  --mark-l:#0047BB; --mark-d:#8FB1FF;
+}
+:root[data-palette="concrete"]{
+  --hero-bg-l:#E4E4E0; --hero-bg-d:#202020;
+  --hero-ink-l:#101010; --hero-ink-d:#F5F5F2;
+  --hero-muted-l:#53534E; --hero-muted-d:#B6B6B0;
+  --hero-sheen-l:rgba(255,255,255,.75); --hero-sheen-d:rgba(255,255,255,.06);
+  --hero-trace-l:rgba(16,16,16,.42); --hero-trace-d:rgba(255,255,255,.42);
+  --bot-l:#101010; --bot-d:#F5F5F2;
+  --beacon-l:#FFD400; --beacon-d:#FFD400;
+  --hi-l:#101010; --hi-d:#F5F5F2;
+  --hi-ink-l:#FFFFFF; --hi-ink-d:#101010;
+  --mark-l:#101010; --mark-d:#F5F5F2;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --page:#141414; --panel:#1E1E1E; --ink:#F5F5F2; --muted:#B6B6B0; --line:#363636;
+    --art-bg:#272727; --art-sheen:rgba(255,255,255,.08); --shadow:rgba(0,0,0,.55);
+    --hero-bg:var(--hero-bg-d); --hero-ink:var(--hero-ink-d); --hero-muted:var(--hero-muted-d);
+    --hero-sheen:var(--hero-sheen-d); --hero-trace:var(--hero-trace-d);
+    --bot:var(--bot-d); --beacon:var(--beacon-d);
+    --hi:var(--hi-d); --hi-ink:var(--hi-ink-d); --mark:var(--mark-d);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --page:#141414; --panel:#1E1E1E; --ink:#F5F5F2; --muted:#B6B6B0; --line:#363636;
+  --art-bg:#272727; --art-sheen:rgba(255,255,255,.08); --shadow:rgba(0,0,0,.55);
+  --hero-bg:var(--hero-bg-d); --hero-ink:var(--hero-ink-d); --hero-muted:var(--hero-muted-d);
+  --hero-sheen:var(--hero-sheen-d); --hero-trace:var(--hero-trace-d);
+  --bot:var(--bot-d); --beacon:var(--beacon-d);
+  --hi:var(--hi-d); --hi-ink:var(--hi-ink-d); --mark:var(--mark-d);
+}
+
+/* ---------- base ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(var(--header-h) + env(safe-area-inset-top,0px));-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--page);color:var(--ink);font-family:var(--body);font-size:1.0625rem;line-height:1.55;font-stretch:100%}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--page)}
+main{overflow-x:clip}
+h1,h2,h3,h4,p,ul,ol,dl,dd,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:var(--ink);text-underline-offset:.18em}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+.hero :focus-visible{outline-color:var(--hero-ink)}
+.end :focus-visible{outline-color:var(--hi-ink)}
+.tnum{font-variant-numeric:tabular-nums}
+
+.display{font-family:var(--display);font-stretch:62%;font-weight:800;line-height:.9;letter-spacing:-.005em}
+h2.display{font-size:clamp(2.75rem,7vw,5.5rem)}
+.lede{font-size:1.1875rem;max-width:38rem;color:var(--muted)}
+
+.btn{--b:var(--ink);--bf:var(--page);display:inline-flex;align-items:center;min-height:48px;padding:0 1.25rem;border-radius:4px;border:2px solid var(--b);
+  font-weight:650;text-decoration:none;color:var(--b);background:transparent;cursor:pointer;transition:background .18s,color .18s}
+.btn:hover{background:var(--b);color:var(--bf)}
+.btn.solid{background:var(--b);color:var(--bf)}
+.btn.solid:hover{background:transparent;color:var(--b)}
+.hero .btn{--b:var(--hero-ink);--bf:var(--hero-bg)}
+
+/* ---------- header ---------- */
+.site-head{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;height:var(--header-h);
+  display:flex;align-items:center;gap:1.5rem;padding:0 var(--gut);background:var(--page)}
+.site-head .who{font-family:var(--display);font-stretch:68%;font-weight:800;font-size:1.5rem;color:var(--ink);text-decoration:none;margin-right:auto;white-space:nowrap}
+.site-nav{display:flex;gap:1.5rem}
+.site-nav a{color:var(--ink);text-decoration:none;font-weight:550;font-size:.9375rem;padding:.4rem 0;border-bottom:3px solid transparent}
+.site-nav a:hover{border-color:var(--line)}
+.site-nav a.here{border-color:var(--ink)}
+.site-head .btn{min-height:40px;padding:0 1rem;font-size:.9375rem}
+.menu-btn{display:none}
+/* the robot that runs along the header as you scroll */
+.run{position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--line)}
+.run i{position:absolute;inset:0;background:var(--ink);transform-origin:0 50%;transform:scaleX(0)}
+.run b{position:absolute;left:0;bottom:-6px;width:22px;height:14px;border-radius:4px;background:var(--ink);will-change:transform}
+.run b::after{content:"";position:absolute;left:5px;top:4px;width:6px;height:6px;border-radius:50%;background:var(--page)}
+@media (max-width:860px){
+  .menu-btn{display:inline-flex;align-items:center;min-height:40px;padding:0 1rem;border:2px solid var(--ink);border-radius:4px;background:none;font-weight:650;font-size:.9375rem;cursor:pointer}
+  .site-head{gap:.6rem}
+  .site-nav{display:none;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--page);border-bottom:1px solid var(--line);padding:.5rem var(--gut) 1rem}
+  .site-nav.open{display:flex}
+  .site-nav a{padding:.8rem 0;border-bottom:1px solid var(--line);font-size:1.0625rem}
+  .site-nav a.here{border-color:var(--line)}
+}
+
+/* ---------- hero: a floor being cleaned ---------- */
+.hero{position:relative;min-height:clamp(600px,calc(100vh - var(--header-h)),920px);overflow:hidden;cursor:crosshair;background:var(--hero-bg);color:var(--hero-ink)}
+#floor{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-inner{position:relative;padding:clamp(28px,6vh,72px) var(--gut) 140px;display:flex;flex-direction:column;align-items:flex-start;gap:clamp(20px,3.2vh,36px);pointer-events:none}
+.hero-inner > *{pointer-events:auto;cursor:auto}
+.name-wrap{position:relative}
+.hero h1{font-size:clamp(5.25rem,19vw,13.5rem);line-height:.8;padding-bottom:.06em}
+.hero h1 span{display:block}
+.pitch{max-width:33rem}
+.pitch p:first-child{font-size:clamp(1.25rem,2.1vw,1.5rem);line-height:1.3;font-weight:650}
+.pitch p + p{margin-top:.75rem;color:var(--hero-muted)}
+.cta{display:flex;flex-wrap:wrap;gap:.75rem}
+.hud{position:absolute;right:var(--gut);bottom:28px;margin:0;padding:.7rem 1rem;border-radius:6px;background:#FFFFFF;color:#101010;
+  font-size:.9375rem;line-height:1.35;cursor:auto;max-width:17rem}
+.hud strong{font-family:var(--display);font-stretch:68%;font-weight:800;font-size:1.75rem;line-height:1;display:block}
+.hud span{color:#595955}
+@media (max-width:700px){ .hud{left:var(--gut);right:auto} .hero-inner{padding-bottom:230px;padding-right:68px} }
+
+/* one load moment: the name is scanned in */
+@media (prefers-reduced-motion:no-preference){
+  .hero h1{clip-path:inset(0 100% 0 0);animation:scan-in 1s .2s cubic-bezier(.2,.7,.2,1) forwards}
+  .name-wrap::after{content:"";position:absolute;top:0;bottom:0;left:0;width:3px;background:var(--hero-ink);opacity:0;animation:scan-bar 1s .2s cubic-bezier(.2,.7,.2,1) forwards}
+  .pitch,.cta{opacity:0;animation:rise .6s 1s ease-out forwards}
+  .cta{animation-delay:1.15s}
+}
+@keyframes scan-in{to{clip-path:inset(0 0 0 0)}}
+@keyframes scan-bar{0%{left:0;opacity:1}90%{opacity:1}100%{left:100%;opacity:0}}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* ---------- figures ---------- */
+.figures{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--line);background:var(--page)}
+.figures li{padding:clamp(20px,3vw,36px) var(--gut) clamp(22px,3vw,38px);border-left:1px solid var(--line)}
+.figures li:first-child{border-left:0}
+.figures .num{display:block;font-family:var(--display);font-stretch:62%;font-weight:800;font-size:clamp(3rem,6.2vw,5.25rem);line-height:.9;font-variant-numeric:tabular-nums}
+.figures .num small{font-size:.42em;font-stretch:80%;font-weight:700;margin-right:.15em}
+.figures p{margin-top:.6rem;color:var(--muted);font-size:.9688rem;max-width:19rem}
+@media (min-width:1100px){ .figures li{padding-inline:clamp(20px,2.4vw,40px)} .figures li:first-child{padding-left:var(--gut)} }
+@media (max-width:1099px){ .figures{grid-template-columns:1fr 1fr} .figures li:nth-child(odd){border-left:0} .figures li:nth-child(n+3){border-top:1px solid var(--line)} }
+@media (max-width:520px){ .figures{grid-template-columns:1fr} .figures li{border-left:0} .figures li + li{border-top:1px solid var(--line)} }
+
+/* ---------- sections ---------- */
+.sec{padding:clamp(72px,11vh,128px) var(--gut)}
+.sec-head{display:grid;gap:1rem;margin-bottom:clamp(28px,5vh,56px)}
+
+/* ---------- deployments ---------- */
+.deploy{position:relative}
+.deploy-pin{padding:clamp(56px,9vh,96px) 0 clamp(40px,7vh,72px)}
+.deploy .sec-head{padding:0 var(--gut);margin-bottom:clamp(20px,3.5vh,36px)}
+.deploy-viewport{overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.deploy-track{display:flex;gap:18px;width:max-content;padding:4px var(--gut) 14px}
+.deploy-track > li{scroll-snap-align:start;scroll-margin-left:var(--gut)}
+.deploy-bar{margin:14px var(--gut) 0;height:2px;background:var(--line);position:relative}
+.deploy-bar i{position:absolute;inset:0;background:var(--ink);transform-origin:0 50%;transform:scaleX(0)}
+.deploy.is-pinned .deploy-pin{position:sticky;top:calc(var(--header-h) + env(safe-area-inset-top,0px));height:calc(100vh - var(--header-h));
+  display:flex;flex-direction:column;justify-content:center;padding:0;overflow:hidden}
+.deploy.is-pinned .deploy-viewport{overflow:hidden}
+.deploy.is-pinned .deploy-track{will-change:transform}
+
+.group-card{width:230px;display:flex;flex-direction:column;justify-content:flex-end;padding:20px 20px 22px;border-left:6px solid var(--hi)}
+.group-card h3{font-family:var(--display);font-stretch:62%;font-weight:800;font-size:2.5rem;line-height:.92}
+.group-card p{margin-top:.6rem;color:var(--muted);font-size:.9375rem}
+.card{width:312px;background:var(--panel);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
+.card.feature{width:470px}
+.card-art{position:relative;height:196px;background:var(--art-bg)}
+.card-art svg,.card-art img{position:absolute;inset:0;width:100%;height:100%;display:block}
+.card-art img{object-fit:cover}
+.card-body{padding:16px 18px 20px}
+.card h3{font-size:1.25rem;line-height:1.2;font-weight:700}
+.card .site{margin-top:.2rem;font-weight:650}
+.card .note{margin-top:.55rem;color:var(--muted);font-size:.9688rem}
+.card.feature h3{font-family:var(--display);font-stretch:62%;font-weight:800;font-size:2.5rem;line-height:.92}
+@media (max-width:700px){ .group-card{width:168px;padding:16px 12px 18px 16px} .group-card h3{font-size:2rem} .card{width:284px} .card.feature{width:min(470px,84vw)} }
+
+/* card art (drawn maps, shown until a photo is added) */
+.a-grid{fill:var(--muted);opacity:.35}
+.a-room{fill:none;stroke:var(--line);stroke-width:1.5}
+.a-ob{fill:var(--panel);stroke:var(--muted);stroke-width:1.25}
+.a-sheen{fill:none;stroke:var(--art-sheen);stroke-width:15;stroke-linecap:round;stroke-linejoin:round}
+.a-route{fill:none;stroke:var(--mark);stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.a-thin{fill:none;stroke:var(--muted);stroke-width:1.25}
+.a-zone{fill:none;stroke:var(--mark);stroke-width:1.25;stroke-dasharray:3 6;stroke-linecap:round}
+.a-wedge{fill:var(--mark);fill-opacity:.14}
+.a-bot{fill:var(--mark)}
+.a-beacon{fill:var(--art-bg)}
+.a-fault{fill:var(--mark)}
+.a-person{fill:var(--panel);stroke:var(--ink);stroke-width:1.5}
+.a-bar{fill:var(--mark)}
+@media (prefers-reduced-motion:no-preference){
+  .a-draw{stroke-dasharray:1;stroke-dashoffset:1;transition:stroke-dashoffset 2.4s cubic-bezier(.4,0,.2,1) .15s}
+  .card.in .a-draw{stroke-dashoffset:0}
+  .a-pop{opacity:0;transition:opacity .5s ease-out}
+  .card.in .a-pop{opacity:1}
+  .card.in .a-late{transition-delay:2.3s}
+  .a-bar{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(.15);transition:transform .7s cubic-bezier(.2,.8,.2,1)}
+  .card.in .a-bar{transform:none}
+}
+
+/* ---------- clients ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:clamp(24px,4vh,40px)}
+.filters button{min-height:44px;padding:0 1rem;border-radius:4px;border:1.5px solid var(--line);background:transparent;cursor:pointer;font-weight:600;font-size:.9375rem;transition:background .15s,border-color .15s,color .15s}
+.filters button:hover{border-color:var(--ink)}
+.filters button[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--page)}
+.clients{display:grid;grid-template-columns:repeat(auto-fill,minmax(172px,1fr));gap:28px 18px}
+.client{transition:opacity .25s}
+.client.dim{opacity:.16}
+.plate{position:relative;height:104px;display:flex;align-items:center;justify-content:center;padding:14px 16px;background:#FFFFFF;border:1px solid var(--line);border-radius:6px;overflow:hidden}
+.plate img{max-width:100%;max-height:100%;object-fit:contain;display:block}
+.plate .wordmark{font-family:var(--display);font-stretch:62%;font-weight:800;font-size:1.5rem;line-height:.98;text-align:center;color:#101010}
+.client h3{margin-top:.7rem;font-size:1.0625rem;line-height:1.25;font-weight:700}
+.client p{margin-top:.15rem;color:var(--muted);font-size:.9375rem;line-height:1.35}
+.partners{margin-top:clamp(36px,6vh,64px);padding-top:1.4rem;border-top:1px solid var(--line);max-width:52rem;color:var(--muted)}
+.partners strong{color:var(--ink)}
+@media (max-width:520px){ .clients{grid-template-columns:1fr 1fr;gap:22px 12px} .plate{height:88px} }
+
+/* ---------- experience ---------- */
+.xp{border-top:1px solid var(--line)}
+.xp:last-child{border-bottom:1px solid var(--line)}
+.xp-btn{width:100%;display:grid;grid-template-columns:minmax(9.5rem,13rem) 1fr 44px;gap:1rem;align-items:center;padding:1.2rem 0;background:none;border:0;cursor:pointer;text-align:left}
+.xp-when{color:var(--muted);font-variant-numeric:tabular-nums;font-size:.9688rem}
+.xp-role{display:block;font-family:var(--display);font-stretch:66%;font-weight:750;font-size:clamp(1.6rem,3vw,2.25rem);line-height:1}
+.xp-org{display:block;margin-top:.3rem;color:var(--muted)}
+.xp-sign{justify-self:end;position:relative;width:44px;height:44px;border:1.5px solid var(--line);border-radius:4px;transition:border-color .15s,background .15s}
+.xp-sign::before,.xp-sign::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:2px;margin:-1px 0 0 -7px;background:var(--ink);transition:transform .3s}
+.xp-sign::after{transform:rotate(90deg)}
+.xp-btn:hover .xp-sign{border-color:var(--ink)}
+.xp-btn[aria-expanded="true"] .xp-sign::after{transform:rotate(0deg)}
+.xp-panel{display:grid;grid-template-rows:0fr;visibility:hidden;transition:grid-template-rows .38s cubic-bezier(.3,.7,.2,1),visibility 0s .38s}
+.xp-btn[aria-expanded="true"] + .xp-panel{grid-template-rows:1fr;visibility:visible;transition:grid-template-rows .38s cubic-bezier(.3,.7,.2,1),visibility 0s}
+.xp-panel > div{overflow:hidden}
+.xp-body{padding:0 0 1.6rem;margin-left:calc(min(13rem,max(9.5rem,22%)) + 1rem);max-width:44rem}
+.xp-body li{position:relative;padding-left:1.1rem;margin-top:.55rem}
+.xp-body li::before{content:"";position:absolute;left:0;top:.62em;width:6px;height:6px;background:var(--mark)}
+.xp-body h4{margin:1.1rem 0 0;font-size:1rem}
+.xp-body h4:first-child{margin-top:0}
+@media (max-width:700px){
+  .xp-btn{grid-template-columns:1fr 44px}
+  .xp-when{grid-column:1/-1;order:-1}
+  .xp-body{margin-left:0}
+}
+
+/* ---------- projects ---------- */
+.proj{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:.75rem clamp(1.5rem,4vw,4rem);padding:1.6rem 0;border-top:1px solid var(--line)}
+.proj:last-child{border-bottom:1px solid var(--line)}
+.proj h3{font-family:var(--display);font-stretch:66%;font-weight:750;font-size:clamp(1.6rem,3vw,2.25rem);line-height:1}
+.proj .where{margin-top:.45rem;color:var(--muted);font-size:.9688rem}
+.proj p.what{max-width:40rem}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.8rem}
+.chips li{padding:.15rem .55rem;border-radius:3px;font-size:.875rem;color:var(--muted);background:var(--panel)}
+@media (max-width:760px){ .proj{grid-template-columns:1fr} }
+
+/* ---------- toolkit ---------- */
+.kit{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.5rem,3vw,3rem)}
+.kit h3,.creds h3{font-size:1.0625rem;font-weight:700;padding-bottom:.6rem;margin-bottom:.8rem;border-bottom:2px solid var(--ink)}
+.kit li{margin-top:.35rem;color:var(--muted)}
+.creds{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(1.5rem,3vw,3rem);margin-top:clamp(40px,7vh,72px)}
+.creds li{display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;border-bottom:1px solid var(--line)}
+.creds li span:last-child{color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.creds .edu li{display:block}
+.creds .edu strong{display:block}
+.creds .edu li span:last-child{color:var(--muted);white-space:normal}
+@media (max-width:1000px){ .kit{grid-template-columns:1fr 1fr} .creds{grid-template-columns:1fr} }
+@media (max-width:520px){ .kit{grid-template-columns:1fr} }
+
+/* ---------- contact ---------- */
+.end{background:var(--hi);color:var(--hi-ink);padding:clamp(72px,12vh,140px) var(--gut) 40px}
+.end .mail{display:inline-block;margin-top:clamp(20px,4vh,40px);font-family:var(--display);font-stretch:62%;font-weight:800;font-size:clamp(2.1rem,8.2vw,7rem);line-height:1;color:var(--hi-ink);text-decoration:none;border-bottom:.06em solid var(--hi-ink);overflow-wrap:anywhere}
+.end .mail:hover{opacity:.72}
+.end dl{display:flex;flex-wrap:wrap;gap:1.5rem clamp(2rem,6vw,5rem);margin-top:clamp(32px,6vh,64px)}
+.end dt{font-size:.9375rem;opacity:.78}
+.end dd{font-size:1.1875rem;font-weight:650;margin-top:.15rem}
+.end dd a{color:var(--hi-ink)}
+.end .legal{margin-top:clamp(48px,9vh,96px);font-size:.9375rem;opacity:.78}
+
+/* ---------- owner edit tools (only shown to people who can edit this page) ---------- */
+.slot-tools{position:absolute;left:8px;right:8px;bottom:8px;display:none;flex-wrap:wrap;gap:6px;z-index:2}
+.editing .slot-tools{display:flex}
+.slot-tools button{min-height:44px;padding:0 .8rem;border:0;border-radius:4px;background:#101010;color:#FFFFFF;font-weight:650;font-size:.875rem;cursor:pointer;box-shadow:0 0 0 2px #FFFFFF}
+.slot-tools button:focus-visible{outline:3px solid #FFD400;outline-offset:2px}
+.editing .plate{overflow:visible;height:auto;min-height:104px;padding-bottom:60px}
+.edit-bar{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:40;
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.5rem;padding:.55rem .6rem;width:max-content;max-width:calc(100vw - 24px);
+  background:#101010;color:#FFFFFF;border-radius:8px;box-shadow:0 14px 44px -10px rgba(0,0,0,.6);font-size:.9375rem}
+.edit-bar button{min-height:44px;padding:0 .9rem;border-radius:4px;border:1.5px solid rgba(255,255,255,.45);background:transparent;color:#FFFFFF;font-weight:650;cursor:pointer;display:inline-flex;align-items:center;gap:.5rem}
+.edit-bar button:hover{border-color:#FFFFFF}
+.edit-bar button.primary{background:#FFFFFF;color:#101010;border-color:#FFFFFF}
+.edit-bar button[disabled]{opacity:.45;cursor:default}
+.edit-bar button[aria-pressed="true"]{border-color:#FFFFFF;box-shadow:inset 0 0 0 1.5px #FFFFFF}
+.edit-bar button i{width:16px;height:16px;border-radius:3px;border:1px solid rgba(255,255,255,.6);display:inline-block}
+.edit-bar .msg{padding:0 .4rem;max-width:22rem}
+.edit-bar :focus-visible{outline:3px solid #FFD400;outline-offset:2px}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition-duration:0s !important;animation:none !important}
+}
+</style>
+</head>
+<body>
+<div id="site">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <pattern id="slam" width="16" height="16" patternUnits="userSpaceOnUse"><rect class="a-grid" x="7.25" y="7.25" width="1.5" height="1.5"/></pattern>
+  </defs>
+</svg>
+
+<header class="site-head">
+  <a class="who" href="#top">Sadek Mefti</a>
+  <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+  <nav class="site-nav" id="site-nav" aria-label="Sections">
+    <a href="#deployments">Deployments</a>
+    <a href="#clients">Clients</a>
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#toolkit">Toolkit</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a class="btn solid" href="mailto:sadekmefti@gmail.com">Email me</a>
+  <div class="run" aria-hidden="true"><i></i><b></b></div>
+</header>
+
+<main>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <canvas id="floor" aria-hidden="true"></canvas>
+  <div class="hero-inner">
+    <div class="name-wrap" data-obstacle>
+      <h1 class="display"><span>Sadek</span><span>Mefti</span></h1>
+    </div>
+    <div class="pitch" data-obstacle>
+      <p>Technical solutions lead. I deploy autonomous robot fleets and build the AI and automation around them.</p>
+      <p>Based in Dubai, working across the UAE and Saudi Arabia in Arabic, French and English, with over a decade in B2B technical sales.</p>
+    </div>
+    <div class="cta" data-obstacle>
+      <a class="btn solid" href="#deployments">See the deployments</a>
+      <a class="btn" href="https://www.linkedin.com/in/sadekmefti/" target="_blank" rel="noopener">Open LinkedIn</a>
+    </div>
+  </div>
+  <p class="hud" data-obstacle>
+    <strong class="tnum" id="cov">0%</strong>
+    of this floor covered.
+    <span>Click the floor to drop an obstacle and the robot replans.</span>
+  </p>
+</section>
+
+<!-- ============ FIGURES ============ -->
+<ul class="figures" id="figures">
+  <li><span class="num"><span data-count="150">150</span>+</span><p>commercial robots deployed and maintained across UAE sites, including Dubai International Airport and Dubai Mall</p></li>
+  <li><span class="num"><small>AED</small><span data-count="15">15</span>M+</span><p>total value of that autonomous fleet</p></li>
+  <li><span class="num"><small>AED</small><span data-count="40">40</span>M+</span><p>enterprise deal with Du, secured with Samsung Gulf and Grabba</p></li>
+  <li><span class="num"><small>AED</small><span data-count="3">3</span>M+</span><p>in robotics sales to government and semi-government entities</p></li>
+</ul>
+
+<!-- ============ DEPLOYMENTS ============ -->
+<section class="deploy" id="deployments" aria-labelledby="h-deploy">
+  <div class="deploy-pin">
+    <div class="sec-head">
+      <h2 class="display" id="h-deploy">Robots in the field</h2>
+      <p class="lede">Cleaning fleets, humanoids and service robots I have deployed, demonstrated and repaired on site.</p>
+    </div>
+    <div class="deploy-viewport" tabindex="0" aria-label="Deployments, scroll sideways">
+      <ul class="deploy-track" id="deploy-track"></ul>
+    </div>
+    <div class="deploy-bar" aria-hidden="true"><i></i></div>
+  </div>
+</section>
+
+<!-- ============ CLIENTS ============ -->
+<section class="sec" id="clients" aria-labelledby="h-clients">
+  <div class="sec-head">
+    <h2 class="display" id="h-clients">Clients</h2>
+    <p class="lede">Organizations I have worked with directly across the GCC.</p>
+  </div>
+  <div class="filters" id="filters" role="group" aria-label="Filter by sector"></div>
+  <ul class="clients" id="clients-grid"></ul>
+  <p class="partners"><strong>Robots and platforms from</strong> SoftBank Robotics, Gausium, Pudu Robotics, Temi, Samsung, Grabba and Humanizing Technologies.</p>
+</section>
+
+<!-- ============ EXPERIENCE ============ -->
+<section class="sec" id="experience" aria-labelledby="h-xp">
+  <div class="sec-head">
+    <h2 class="display" id="h-xp">Experience</h2>
+  </div>
+
+  <div class="xp">
+    <button class="xp-btn" type="button" aria-expanded="true" aria-controls="xp1">
+      <span class="xp-when">Jul 2026 to now</span>
+      <span><span class="xp-role">Robotics Technical Lead, UAE and KSA</span><span class="xp-org">SoftBank Robotics UK Ltd (EMEA HQ), Dubai, remote</span></span>
+      <span class="xp-sign" aria-hidden="true"></span>
+    </button>
+    <div class="xp-panel" id="xp1"><div><ul class="xp-body">
+      <li>Lead a two-person engineering team running synchronized deployments of Gausium (Phantas, Omnie, Scrubber 50) and Whiz fleets at high-profile sites including Dubai International Airport and Dubai Mall.</li>
+      <li>Primary technical authority for tier-1 facilities management partners EFS, Transguard and Farnek, covering operational workflows, field training and SLA adherence.</li>
+      <li>On-site electro-mechanical diagnostics and repairs to keep fleet uptime high, with cloud IoT telemetry feeding automated utilization and performance reports.</li>
+      <li>Technical and value-engineering sessions in Arabic, French and English that prove ROI to enterprise decision-makers.</li>
+      <li>Author of the regional launch SOPs, onboarding guides and field service documentation for new robot platforms.</li>
+    </ul></div></div>
+  </div>
+
+  <div class="xp">
+    <button class="xp-btn" type="button" aria-expanded="false" aria-controls="xp2">
+      <span class="xp-when">Mar 2024 to Apr 2026</span>
+      <span><span class="xp-role">Presales and Solutions Engineer</span><span class="xp-org">Manteq Systems &amp; Information Technology, Dubai, hybrid</span></span>
+      <span class="xp-sign" aria-hidden="true"></span>
+    </button>
+    <div class="xp-panel" id="xp2"><div><ul class="xp-body">
+      <li>Ran demonstrations and proofs of concept for enterprise healthcare clients looking for end-to-end revenue cycle management.</li>
+      <li>Built and deployed custom serverless API endpoints on AWS Lambda to speed up client integrations and technical validations.</li>
+      <li>Built internal applications in Python and HTML, integrating REST APIs with CORS, JWT/OAuth and JSON/XML data formats.</li>
+      <li>Primary technical liaison between engineering teams and decision-makers across UAE healthcare facilities, mapping integrations step by step.</li>
+      <li>Designed API validation protocols and test environments that cut partner onboarding time.</li>
+    </ul></div></div>
+  </div>
+
+  <div class="xp">
+    <button class="xp-btn" type="button" aria-expanded="false" aria-controls="xp3">
+      <span class="xp-when">Sep 2022 to Feb 2024</span>
+      <span><span class="xp-role">Technical Sales Engineer, pre and post sales</span><span class="xp-org">Jacky’s Business Solutions LLC, Dubai, hybrid</span></span>
+      <span class="xp-sign" aria-hidden="true"></span>
+    </button>
+    <div class="xp-panel" id="xp3"><div><ul class="xp-body">
+      <li>Pre-sales, deployment and live proofs of concept for autonomous robots from SoftBank Robotics, Pudu Robotics and Temi.</li>
+      <li>Regional B2B growth and solution delivery as Samsung’s first MSP Premium Partner in the GCC.</li>
+      <li>Certified Samsung Knox Professional and B2B Devices Expert, configuring MDM policies, containerization and E-FOTA.</li>
+      <li>Technical implementation and pilot testing of AI-powered hospitality and service robots in commercial venues.</li>
+      <li>Trusted relationships with enterprise clients and telecom operators across the UAE.</li>
+    </ul></div></div>
+  </div>
+
+  <div class="xp">
+    <button class="xp-btn" type="button" aria-expanded="false" aria-controls="xp4">
+      <span class="xp-when">Dec 2018 to Aug 2022</span>
+      <span><span class="xp-role">Customer Success and Support Specialist</span><span class="xp-org">Concentrix (formerly Webhelp)</span></span>
+      <span class="xp-sign" aria-hidden="true"></span>
+    </button>
+    <div class="xp-panel" id="xp4"><div><div class="xp-body">
+      <h4>Customer Success Specialist, Jun 2020 to Aug 2022, full-time</h4>
+      <ul>
+        <li>Used Salesforce Einstein AI to analyze customer data, predict churn risk and raise satisfaction.</li>
+        <li>Beat targets, leading the team to generate €100K a year through account optimization.</li>
+        <li>Ran regular client follow-ups and product training sessions.</li>
+      </ul>
+      <h4>Customer Support Specialist, Dec 2018 to Jun 2020, part-time</h4>
+      <ul>
+        <li>Technical support for Bouygues Télécom customers on fiber, DSL, VoIP and IPTV.</li>
+        <li>Generated €1,000 a month in incremental value alongside top-tier troubleshooting.</li>
+      </ul>
+    </div></div></div>
+  </div>
+
+  <div class="xp">
+    <button class="xp-btn" type="button" aria-expanded="false" aria-controls="xp5">
+      <span class="xp-when">Since 2012</span>
+      <span><span class="xp-role">Automation Expert and Website Developer</span><span class="xp-org">Freelance, remote</span></span>
+      <span class="xp-sign" aria-hidden="true"></span>
+    </button>
+    <div class="xp-panel" id="xp5"><div><ul class="xp-body">
+      <li>Designed and launched more than 30 websites for e-commerce, blogging and travel clients.</li>
+      <li>Built web applications, platforms and Android apps on Supabase and SQL for real-time data.</li>
+      <li>Built automated content pipelines and AI agents on OpenAI, Gemini, Claude, LLaMA and DeepSeek.</li>
+      <li>Deployed AWS Lambda endpoints and Google Cloud Vertex AI for tool integration and content generation.</li>
+    </ul></div></div>
+  </div>
+
+  <div class="xp">
+    <button class="xp-btn" type="button" aria-expanded="false" aria-controls="xp6">
+      <span class="xp-when">Since 2010</span>
+      <span><span class="xp-role">Sales Assistant Manager</span><span class="xp-org">Samir Mefti Electronics &amp; Home Appliances, part-time, on site</span></span>
+      <span class="xp-sign" aria-hidden="true"></span>
+    </button>
+    <div class="xp-panel" id="xp6"><div><ul class="xp-body">
+      <li>Ran daily retail operations, face-to-face customer service and inventory.</li>
+      <li>Drove upselling and cross-selling across audio-visual equipment, satellite receivers and TV memberships.</li>
+      <li>Hands-on with DSL, IPTV, network tools, micro-controllers and hardware repair.</li>
+    </ul></div></div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section class="sec" id="projects" aria-labelledby="h-proj">
+  <div class="sec-head">
+    <h2 class="display" id="h-proj">Built and shipped</h2>
+    <p class="lede">The integrations, tools and practices behind the deals.</p>
+  </div>
+
+  <article class="proj">
+    <div><h3>Fleet telemetry reporting</h3><p class="where">SoftBank Robotics</p></div>
+    <div><p class="what">Cloud IoT telemetry from the robot fleet turned into automated utilization analytics and performance reports.</p>
+      <ul class="chips"><li>IoT telemetry</li><li>Workflow automation</li><li>Reporting</li></ul></div>
+  </article>
+  <article class="proj">
+    <div><h3>Regional launch playbooks</h3><p class="where">SoftBank Robotics</p></div>
+    <div><p class="what">Deployment SOPs, technical onboarding guides and field service documentation that shorten a partner’s time to value on a new robot platform.</p>
+      <ul class="chips"><li>SOPs</li><li>Partner enablement</li><li>Field service</li></ul></div>
+  </article>
+  <article class="proj">
+    <div><h3>Serverless integration endpoints</h3><p class="where">Manteq Systems</p></div>
+    <div><p class="what">Custom API endpoints on AWS Lambda that speed up client integrations and technical validations for a healthcare revenue cycle management platform.</p>
+      <ul class="chips"><li>AWS Lambda</li><li>REST APIs</li><li>JWT and OAuth</li><li>JSON and XML</li></ul></div>
+  </article>
+  <article class="proj">
+    <div><h3>Proof-of-concept apps for healthcare</h3><p class="where">Manteq Systems</p></div>
+    <div><p class="what">AI-assisted web and desktop prototypes in Python and HTML that demonstrate API integrations and data exchange live during a POC, plus the validation protocols and test environments around them.</p>
+      <ul class="chips"><li>Python</li><li>HTML</li><li>CORS</li><li>API testing</li></ul></div>
+  </article>
+  <article class="proj">
+    <div><h3>Samsung Knox managed service practice</h3><p class="where">Jacky’s Business Solutions</p></div>
+    <div><p class="what">Enterprise mobility delivery for Samsung’s first MSP Premium Partner in the GCC, including the AED 40M+ Du deal secured with Samsung Gulf and Grabba.</p>
+      <ul class="chips"><li>Samsung Knox</li><li>MDM policies</li><li>Containerization</li><li>E-FOTA</li></ul></div>
+  </article>
+  <article class="proj">
+    <div><h3>Digital avatar proof of concept</h3><p class="where">Jacky’s Business Solutions</p></div>
+    <div><p class="what">A first-of-its-kind digital avatar POC from Humanizing Technologies for Etihad Water and Electricity, shown live at Gitex 2023.</p>
+      <ul class="chips"><li>Digital avatar</li><li>Live POC</li><li>Gitex 2023</li></ul></div>
+  </article>
+  <article class="proj">
+    <div><h3>AI agents and content pipelines</h3><p class="where">Freelance</p></div>
+    <div><p class="what">Bots, agents and automated publishing pipelines for client sites, combining LLMs with image and video generation models.</p>
+      <ul class="chips"><li>Make.com</li><li>OpenAI</li><li>Gemini</li><li>Claude</li><li>Vertex AI</li><li>Runware</li></ul></div>
+  </article>
+  <article class="proj">
+    <div><h3>30+ websites and apps</h3><p class="where">Freelance</p></div>
+    <div><p class="what">E-commerce, blogging and travel sites, plus web platforms and Android apps with real-time data.</p>
+      <ul class="chips"><li>Supabase</li><li>SQL</li><li>Android</li><li>Google CAPTCHA</li></ul></div>
+  </article>
+</section>
+
+<!-- ============ TOOLKIT ============ -->
+<section class="sec" id="toolkit" aria-labelledby="h-kit">
+  <div class="sec-head">
+    <h2 class="display" id="h-kit">Toolkit</h2>
+  </div>
+  <div class="kit">
+    <div><h3>Robotics and field</h3><ul>
+      <li>Gausium Phantas, Omnie, Scrubber 50</li><li>SoftBank Robotics Whiz, Pepper, Nao</li><li>Pudu Robotics, Temi</li><li>Electro-mechanical diagnostics</li><li>IoT telemetry and fleet analytics</li><li>Aftermarket operations</li>
+    </ul></div>
+    <div><h3>Enterprise mobility</h3><ul>
+      <li>Samsung Knox suite</li><li>MDM policy design</li><li>Containerization and E-FOTA</li><li>Android Enterprise</li><li>ManageEngine</li>
+    </ul></div>
+    <div><h3>AI and automation</h3><ul>
+      <li>Make.com, advanced</li><li>OpenAI GPT, Gemini, Claude, LLaMA</li><li>Grok, Qwen3, DeepSeek</li><li>Veo, Midjourney, FLUX, Kling AI, Recraft</li><li>Vertex AI, Salesforce Einstein</li>
+    </ul></div>
+    <div><h3>Cloud and code</h3><ul>
+      <li>AWS Lambda, Google Cloud</li><li>REST APIs, JWT/OAuth, CORS</li><li>Python, SQL, Supabase</li><li>C, C++, C#, Java</li><li>LabVIEW, VHDL, Ladder Logic, Matlab</li>
+    </ul></div>
+  </div>
+
+  <div class="creds">
+    <div><h3>Certifications</h3><ul>
+      <li><span>Make.com Automation, Advanced</span><span>2025</span></li>
+      <li><span>Android Enterprise Associate, Google</span><span>2023</span></li>
+      <li><span>Samsung Knox Professional</span><span>2023</span></li>
+      <li><span>Samsung Mobile B2B Expert</span><span>2023</span></li>
+      <li><span>Samsung Knox Associate</span><span>2023</span></li>
+      <li><span>ManageEngine Product Associate</span><span>2023</span></li>
+      <li><span>Agile Framework Fundamentals, Udacity</span><span>2023</span></li>
+    </ul></div>
+    <div class="edu"><h3>Education</h3><ul>
+      <li><strong>Master’s in Automation and Control Systems</strong><span>Blida 1 University, 2018 to 2020. Thesis on improving a TRIA 35 30 XTBM plastic crushing machine.</span></li>
+      <li><strong>Bachelor’s in Electrical Engineering</strong><span>Blida 1 University, 2015 to 2018. Thesis on a line-following robot built on Arduino Uno.</span></li>
+    </ul></div>
+    <div><h3>Languages</h3><ul>
+      <li><span>French</span><span>Native</span></li>
+      <li><span>Arabic</span><span>Native</span></li>
+      <li><span>English</span><span>Fluent</span></li>
+      <li><span>Spanish</span><span>Basic</span></li>
+    </ul></div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ CONTACT ============ -->
+<footer class="end" id="contact">
+  <h2 class="display">Get in touch</h2>
+  <a class="mail" href="mailto:sadekmefti@gmail.com">sadekmefti@gmail.com</a>
+  <dl>
+    <div><dt>Phone</dt><dd><a href="tel:+971524830059">+971 52 48 300 59</a></dd></div>
+    <div><dt>LinkedIn</dt><dd><a href="https://www.linkedin.com/in/sadekmefti/" target="_blank" rel="noopener">linkedin.com/in/sadekmefti</a></dd></div>
+    <div><dt>Based in</dt><dd>Dubai, UAE</dd></div>
+  </dl>
+  <p class="legal">© 2026 Sadek Mefti</p>
+</footer>
+</div>
+<script id="site-state" type="application/json">{"v":1,"palette":"signal","photos":{},"logos":{}}</script>
+<script id="site-js">
+(() => {
+'use strict';
+
+/* This page can save a new version of itself when its owner changes a photo, a logo or the palette.
+   The pieces below are read before anything else touches the document, so a saved copy is the page as authored. */
+const SRC = {
+  head: [...document.head.querySelectorAll('[data-site]')].map(e => e.outerHTML).join('\n'),
+  css: document.getElementById('site-css').textContent,
+  body: document.getElementById('site').innerHTML,
+  js: document.currentScript.textContent
+};
+const SAVED = (() => { try { return JSON.parse(document.getElementById('site-state').textContent) || {}; } catch (e) { return {}; } })();
+const fresh = s => ({ v: 1, palette: s.palette || 'signal', photos: { ...(s.photos || {}) }, logos: { ...(s.logos || {}) } });
+let state = fresh(SAVED);
+const PALETTES = [['signal', 'Yellow', '#FFD400'], ['cobalt', 'Cobalt', '#0047BB'], ['concrete', 'Concrete', '#E4E4E0']];
+if (!PALETTES.some(p => p[0] === state.palette)) state.palette = 'signal';
+document.documentElement.dataset.palette = state.palette;
+
+/* ======================================================================
+   CONTENT
+   Photos and logos are added from the page itself (the Edit button its owner sees)
+   and are kept in the small data block above this script.
+   ====================================================================== */
+const DEPLOYMENTS = [
+  { group: 'SoftBank Robotics', when: 'July 2026 to now', text: 'Autonomous cleaning fleets across the UAE and Saudi Arabia.' },
+  { id: 'fleet', feature: true, art: 'coverage', title: '150+ robot cleaning fleet',
+    site: 'Dubai International Airport, Dubai Mall and more',
+    note: 'Deployment, lifecycle maintenance and partner success for a fleet worth over AED 15 million, run with facilities partners EFS, Transguard and Farnek.' },
+  { id: 'gausium-phantas', art: 'coverage', title: 'Gausium Phantas', site: 'SoftBank Robotics fleet, UAE',
+    note: 'Rolled out in synchronized deployments with a two-person engineering team.' },
+  { id: 'gausium-omnie', art: 'coverage', title: 'Gausium Omnie', site: 'SoftBank Robotics fleet, UAE',
+    note: 'Kept running with on-site electro-mechanical diagnostics and repairs.' },
+  { id: 'gausium-scrubber-50', art: 'coverage', title: 'Gausium Scrubber 50', site: 'SoftBank Robotics fleet, UAE',
+    note: 'Tracked through cloud IoT telemetry for utilization and performance reporting.' },
+  { id: 'whiz', art: 'coverage', title: 'Whiz', site: 'SoftBank Robotics fleet, UAE',
+    note: 'Launched with SOPs, onboarding guides and field service documentation for partners.' },
+
+  { group: 'Jacky’s Business Solutions', when: 'September 2022 to February 2024', text: 'Pre-sales, live proofs of concept and exhibitions for humanoid, service and cleaning robots.' },
+  { id: 'pudu-cc1', art: 'coverage', title: 'Pudu CC1', site: 'Jumeirah Emirates Towers, Dubai',
+    note: 'Cleaning robot deployment, August 2023.' },
+  { id: 'pepper-ecae', art: 'greet', title: 'SoftBank Robotics Pepper', site: 'Emirates College for Advanced Education',
+    note: 'On the stand at Gitex 2023.' },
+  { id: 'pepper-gems', art: 'greet', title: 'SoftBank Robotics Pepper', site: 'GEMS School',
+    note: 'Live proof of concept on site.' },
+  { id: 'digital-avatar', art: 'screen', title: 'Digital avatar', site: 'Etihad Water and Electricity',
+    note: 'A first digital avatar proof of concept, with Humanizing Technologies, at Gitex 2023.' },
+  { id: 'pepper-nao-hitex', art: 'greet', title: 'Pepper and Nao', site: 'Hitex 2023, Erbil, Iraq',
+    note: 'Exhibition demonstrations on the show floor.' },
+  { id: 'pepper-tv', art: 'greet', title: 'SoftBank Robotics Pepper', site: 'Kurdistan National TV',
+    note: 'Live demonstration for the broadcaster.' },
+  { id: 'temi-hitex', art: 'greet', title: 'Temi', site: 'Hitex 2023',
+    note: 'Service robot demonstrations for visitors.' },
+  { id: 'nao-repair', art: 'bench', title: 'SoftBank Robotics Nao', site: 'Workshop repair',
+    note: 'Bench diagnosis and repair of a Nao humanoid.' }
+];
+
+const SECTORS = [
+  ['all', 'All'], ['fm', 'Facilities management'], ['venue', 'Real estate and aviation'], ['gov', 'Government and utilities'],
+  ['telecom', 'Telecom'], ['security', 'Security'], ['health', 'Healthcare']
+];
+const CLIENTS = [
+  { key: 'transguard', name: 'Transguard Group', sector: 'fm', does: 'Aviation and facility management' },
+  { key: 'farnek', name: 'Farnek', sector: 'fm', does: 'Smart FM and sustainability' },
+  { key: 'efs', name: 'EFS Facilities Services', short: 'EFS', sector: 'fm', does: 'Global FM operations' },
+  { key: 'emaar', name: 'Emaar', sector: 'venue', does: 'Hospitality and real estate' },
+  { key: 'dubai-airports', name: 'Dubai Airports', sector: 'venue', does: 'Terminal fleet robotics' },
+  { key: 'al-yalayis', name: 'Al Yalayis', sector: 'gov', does: 'Government services center' },
+  { key: 'du', name: 'du', sector: 'telecom', does: '5G IoT and autonomous nodes' },
+  { key: 'eand', name: 'e& (Etisalat)', short: 'e&', sector: 'telecom', does: 'Telecom infrastructure' },
+  { key: 'dewa', name: 'DEWA', sector: 'gov', does: 'Water and power facilities' },
+  { key: 'etihad-we', name: 'Etihad Water and Electricity', short: 'Etihad WE', sector: 'gov', does: 'Federal utility authority' },
+  { key: 'dubai-police', name: 'Dubai Police', sector: 'security', does: 'Smart patrols and stations' },
+  { key: 'moi', name: 'Ministry of Interior', sector: 'security', does: 'Federal security facilities' },
+  { key: 'mohap', name: 'Ministry of Health and Prevention', short: 'MOHAP', sector: 'health', does: 'Federal health facilities' },
+  { key: 'dha', name: 'Dubai Health Authority', sector: 'health', does: 'Dubai hospitals and clinics' },
+  { key: 'doh', name: 'Department of Health Abu Dhabi', short: 'DoH Abu Dhabi', sector: 'health', does: 'Capital health authority' },
+  { key: 'burjeel', name: 'Burjeel Holdings', sector: 'health', does: 'Specialized hospital chain' },
+  { key: 'saudi-german', name: 'Saudi German Health', sector: 'health', does: 'Tertiary medical hospitals' },
+  { key: 'sulaiman-al-habib', name: 'Dr. Sulaiman Al Habib', sector: 'health', does: 'Regional medical centers' }
+];
+
+/* ====================================================================== */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const headerH = () => $('.site-head').offsetHeight;
+
+/* ---------- photos and logos ---------- */
+const liveUrl = {};   // asset id -> address, for files uploaded during this visit
+const srcOf = v => !v ? '' : (liveUrl[v] || (/^[0-9a-f]{32}$/i.test(v) ? '/_blob/' + v : v));
+const tools = (kind, key, has, word) => `<div class="slot-tools"><button type="button" data-act="pick" data-kind="${kind}" data-key="${key}">${has ? 'Replace' : 'Add ' + word}</button>${has ? `<button type="button" data-act="clear" data-kind="${kind}" data-key="${key}">Remove</button>` : ''}</div>`;
+function fillPhoto(card) {
+  const d = DEPLOYMENTS.find(x => x.id === card.dataset.id), box = $('.card-art', card);
+  const src = srcOf(state.photos[d.id]);
+  const drawn = () => ART[d.art](d.feature ? 470 : 312, 196, rng(hash(d.id)));
+  box.innerHTML = (src ? `<img src="${esc(src)}" alt="${esc(d.title + ' at ' + d.site)}">` : drawn()) + tools('photos', d.id, !!src, 'photo');
+  const img = $('img', box);
+  if (img) img.addEventListener('error', () => { img.outerHTML = drawn(); }, { once: true });
+}
+function fillLogo(tile) {
+  const c = CLIENTS.find(x => x.key === tile.dataset.key), box = $('.plate', tile);
+  const src = srcOf(state.logos[c.key]);
+  const word = `<span class="wordmark">${esc(c.short || c.name)}</span>`;
+  box.innerHTML = (src ? `<img src="${esc(src)}" alt="${esc(c.name)} logo">` : word) + tools('logos', c.key, !!src, 'logo');
+  const img = $('img', box);
+  if (img) img.addEventListener('error', () => { img.outerHTML = word; }, { once: true });
+}
+function refill(kind, key) {
+  if (kind === 'photos') { const el = $(`.card[data-id="${key}"]`); if (el) fillPhoto(el); }
+  else { const el = $(`.client[data-key="${key}"]`); if (el) fillLogo(el); }
+}
+
+/* ---------- seeded random, so each card's map is stable ---------- */
+function hash(s) { let h = 2166136261; for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); } return h >>> 0; }
+function rng(seed) { let t = seed >>> 0; return () => { t += 0x6D2B79F5; let r = Math.imul(t ^ t >>> 15, 1 | t); r ^= r + Math.imul(r ^ r >>> 7, 61 | r); return ((r ^ r >>> 14) >>> 0) / 4294967296; }; }
+
+/* ---------- drawn maps for cards ---------- */
+const bg = (w, h) => `<rect width="${w}" height="${h}" fill="url(#slam)"/>`;
+const botMark = (x, y, cls = '') => `<g class="${cls}"><circle class="a-bot" cx="${x}" cy="${y}" r="8"/><circle class="a-beacon" cx="${x}" cy="${y}" r="3"/></g>`;
+
+function artCoverage(w, h, rand) {
+  const m = 14, L = m + 16, R = w - m - 16, lanes = 7, y0 = m + 18, gap = (h - 2 * m - 36) / (lanes - 1);
+  const y = i => +(y0 + i * gap).toFixed(1);
+  const l = Array(lanes).fill(L), r = Array(lanes).fill(R);
+  let obs = '';
+  const leftStart = Math.floor(rand() * 3), rightStart = 3 + Math.floor(rand() * 3);
+  [[0, leftStart], [1, rightStart]].forEach(([side, s]) => {
+    const depth = Math.round(w * (0.16 + rand() * 0.16)), span = 2;
+    const top = y(s) - gap / 2 + 3, hh = gap * span - 6;
+    if (side === 0) { for (let i = s; i < s + span; i++) l[i] = m + depth + 16; obs += `<rect class="a-ob" x="${m}" y="${top.toFixed(1)}" width="${depth}" height="${hh.toFixed(1)}" rx="3"/>`; }
+    else { for (let i = s; i < s + span; i++) r[i] = w - m - depth - 16; obs += `<rect class="a-ob" x="${w - m - depth}" y="${top.toFixed(1)}" width="${depth}" height="${hh.toFixed(1)}" rx="3"/>`; }
+  });
+  let dir = 1, d = `M${l[lanes - 1]} ${y(lanes - 1)}`, ex = 0;
+  for (let i = lanes - 1; i >= 0; i--) {
+    const end = dir > 0 ? r[i] : l[i];
+    d += `H${end}`; ex = end;
+    if (i > 0) {
+      const nextNear = dir > 0 ? r[i - 1] : l[i - 1];
+      const turn = dir > 0 ? Math.min(end, nextNear) : Math.max(end, nextNear);
+      if (turn !== end) d += `H${turn}`;
+      d += `V${y(i - 1)}`;
+      if (turn !== nextNear) d += `H${nextNear}`;
+      dir = -dir;
+    }
+  }
+  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${bg(w, h)}
+    <rect class="a-room" x="${m}" y="${m}" width="${w - 2 * m}" height="${h - 2 * m}" rx="6"/>${obs}
+    <path class="a-sheen a-draw" pathLength="1" d="${d}"/><path class="a-route a-draw" pathLength="1" d="${d}"/>
+    ${botMark(ex, y(0), 'a-pop a-late')}</svg>`;
+}
+
+function artGreet(w, h, rand) {
+  const cx = w / 2, cy = h - 40;
+  const arc = r => `<path class="a-zone" d="M${cx - r} ${cy}A${r} ${r} 0 0 1 ${cx + r} ${cy}"/>`;
+  const people = [];
+  const n = 3 + Math.floor(rand() * 3);
+  for (let i = 0; i < n; i++) {
+    const a = Math.PI * (1.12 + 0.76 * (i + 0.2 + rand() * 0.6) / n), rr = 52 + rand() * 66;
+    people.push([cx + Math.cos(a) * rr, cy + Math.sin(a) * rr, rr, a]);
+  }
+  const near = people.reduce((p, q) => q[2] < p[2] ? q : p);
+  const wa = near[3], spread = 0.3, wr = 124;
+  const wedge = `<path class="a-wedge a-pop" d="M${cx} ${cy}L${(cx + Math.cos(wa - spread) * wr).toFixed(1)} ${(cy + Math.sin(wa - spread) * wr).toFixed(1)}A${wr} ${wr} 0 0 1 ${(cx + Math.cos(wa + spread) * wr).toFixed(1)} ${(cy + Math.sin(wa + spread) * wr).toFixed(1)}Z"/>`;
+  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${bg(w, h)}
+    <path class="a-room" d="M14 ${cy + 20}H${w - 14}"/>${wedge}${arc(46)}${arc(84)}${arc(122)}
+    <path class="a-route a-draw" pathLength="1" d="M${cx} ${cy}L${near[0].toFixed(1)} ${near[1].toFixed(1)}"/>
+    ${people.map(p => `<circle class="a-person" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="6.5"/>`).join('')}
+    ${botMark(cx, cy)}</svg>`;
+}
+
+function artScreen(w, h, rand) {
+  const kw = 108, kh = 150, kx = (w - kw) / 2, ky = (h - kh) / 2;
+  let bars = '';
+  for (let i = 0; i < 9; i++) { const bh = 6 + rand() * 22; bars += `<rect class="a-bar" style="transition-delay:${i * 50}ms" x="${(kx + 20 + i * 8).toFixed(1)}" y="${(ky + kh - 22 - bh).toFixed(1)}" width="4" height="${bh.toFixed(1)}" rx="2"/>`; }
+  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${bg(w, h)}
+    <path class="a-room" d="M14 ${ky + kh + 8}H${w - 14}"/>
+    <rect class="a-ob" x="${kx}" y="${ky}" width="${kw}" height="${kh}" rx="9"/>
+    <circle class="a-thin" cx="${w / 2}" cy="${ky + 44}" r="15"/>
+    <path class="a-thin" d="M${w / 2 - 30} ${ky + 92}c0-18 13-27 30-27s30 9 30 27"/>
+    ${bars}
+    <circle class="a-person" cx="${kx - 46}" cy="${ky + kh - 26}" r="6.5"/><circle class="a-person" cx="${kx + kw + 52}" cy="${ky + kh - 40}" r="6.5"/>
+    <path class="a-zone" d="M${kx - 38} ${ky + kh - 30}L${kx - 6} ${ky + 70}"/></svg>`;
+}
+
+function artBench(w, h, rand) {
+  const pts = [[w / 2, 40], [w / 2, 78], [w / 2 - 44, 92], [w / 2 - 62, 132], [w / 2 + 44, 92], [w / 2 + 66, 128], [w / 2 - 18, 128], [w / 2 - 22, 168], [w / 2 + 18, 128], [w / 2 + 24, 168]];
+  const links = [[0, 1], [1, 2], [2, 3], [1, 4], [4, 5], [1, 6], [6, 7], [1, 8], [8, 9]];
+  const fault = 4;
+  const d = links.map(([a, b]) => `M${pts[a][0]} ${pts[a][1]}L${pts[b][0]} ${pts[b][1]}`).join('');
+  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice" aria-hidden="true">${bg(w, h)}
+    <rect class="a-room" x="14" y="14" width="${w - 28}" height="${h - 28}" rx="6"/>
+    <path class="a-thin a-draw" pathLength="1" d="${d}"/>
+    ${pts.map((p, i) => i === fault ? '' : `<circle class="a-person" cx="${p[0]}" cy="${p[1]}" r="${i === 0 ? 11 : 5}"/>`).join('')}
+    <circle class="a-fault" cx="${pts[fault][0]}" cy="${pts[fault][1]}" r="6"/>
+    <circle class="a-zone a-pop" cx="${pts[fault][0]}" cy="${pts[fault][1]}" r="20"/>
+    <path class="a-route a-pop" d="M${pts[fault][0] + 20} ${pts[fault][1] - 14}L${w - 60} 44H${w - 26}"/></svg>`;
+}
+const ART = { coverage: artCoverage, greet: artGreet, screen: artScreen, bench: artBench };
+
+/* ---------- deployments: build cards, then pin and move sideways on scroll ---------- */
+function initDeploy() {
+  const track = $('#deploy-track');
+  track.innerHTML = DEPLOYMENTS.map(d => {
+    if (d.group) return `<li class="group-card"><h3>${esc(d.group)}</h3><p>${esc(d.when)}. ${esc(d.text)}</p></li>`;
+    return `<li class="card${d.feature ? ' feature' : ''}" data-id="${d.id}"><div class="card-art"></div>
+      <div class="card-body"><h3>${esc(d.title)}</h3><p class="site">${esc(d.site)}</p><p class="note">${esc(d.note)}</p></div></li>`;
+  }).join('');
+  $$('.card', track).forEach(fillPhoto);
+
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: 0.35 });
+  $$('.card', track).forEach(c => io.observe(c));
+
+  const sec = $('#deployments'), pin = $('.deploy-pin'), vp = $('.deploy-viewport'), bar = $('.deploy-bar i');
+  let maxX = 0, pinned = false;
+  function measure() {
+    const can = !reduce && innerWidth >= 900 && innerHeight >= 640;
+    sec.classList.toggle('is-pinned', can);
+    pinned = can;
+    if (!can) { sec.style.height = ''; track.style.transform = ''; vp.tabIndex = 0; update(); return; }
+    vp.removeAttribute('tabindex'); vp.scrollLeft = 0;
+    maxX = Math.max(0, track.scrollWidth - vp.clientWidth);
+    sec.style.height = (pin.offsetHeight + maxX) + 'px';
+    update();
+  }
+  function update() {
+    let p;
+    if (pinned) {
+      p = maxX ? clamp((headerH() - sec.getBoundingClientRect().top) / maxX, 0, 1) : 0;
+      track.style.transform = `translate3d(${(-p * maxX).toFixed(1)}px,0,0)`;
+    } else {
+      const m = vp.scrollWidth - vp.clientWidth;
+      p = m > 0 ? vp.scrollLeft / m : 0;
+    }
+    bar.style.transform = `scaleX(${p.toFixed(4)})`;
+  }
+  addEventListener('scroll', update, { passive: true });
+  vp.addEventListener('scroll', update, { passive: true });
+  addEventListener('resize', measure);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+  measure();
+}
+
+/* ---------- clients ---------- */
+function initClients() {
+  const filters = $('#filters'), grid = $('#clients-grid');
+  filters.innerHTML = SECTORS.map(([k, label], i) => `<button type="button" data-sector="${k}" aria-pressed="${i === 0}">${esc(label)}</button>`).join('');
+  grid.innerHTML = CLIENTS.map(c => `<li class="client" data-key="${c.key}" data-sector="${c.sector}"><div class="plate"></div><h3>${esc(c.name)}</h3><p>${esc(c.does)}</p></li>`).join('');
+  $$('.client', grid).forEach(fillLogo);
+  filters.addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    $$('button', filters).forEach(x => x.setAttribute('aria-pressed', x === b));
+    const k = b.dataset.sector;
+    $$('.client', grid).forEach(x => x.classList.toggle('dim', k !== 'all' && x.dataset.sector !== k));
+  });
+}
+
+/* ---------- experience accordion ---------- */
+function initExperience() {
+  $$('.xp-btn').forEach(b => b.addEventListener('click', () => b.setAttribute('aria-expanded', b.getAttribute('aria-expanded') !== 'true')));
+}
+
+/* ---------- figures count up once ---------- */
+function initFigures() {
+  const nums = $$('[data-count]');
+  if (reduce) return;
+  nums.forEach(n => n.textContent = '0');
+  const io = new IntersectionObserver(es => {
+    if (!es.some(e => e.isIntersecting)) return;
+    io.disconnect();
+    const t0 = performance.now(), dur = 1300;
+    (function tick(now) {
+      const t = clamp((now - t0) / dur, 0, 1), e = 1 - Math.pow(1 - t, 3);
+      nums.forEach(n => n.textContent = Math.round(+n.dataset.count * e));
+      if (t < 1) requestAnimationFrame(tick);
+    })(t0);
+  }, { threshold: 0.4 });
+  io.observe($('#figures'));
+}
+
+/* ---------- header: robot runs along as you scroll, current section marked ---------- */
+function initHeader() {
+  const fill = $('.run i'), bot = $('.run b'), nav = $('#site-nav'), menu = $('.menu-btn');
+  const links = $$('a', nav), secs = links.map(a => $(a.getAttribute('href')));
+  function update() {
+    const max = document.documentElement.scrollHeight - innerHeight;
+    const p = max > 0 ? clamp(scrollY / max, 0, 1) : 0;
+    fill.style.transform = `scaleX(${p.toFixed(4)})`;
+    bot.style.transform = `translate3d(${(p * (document.documentElement.clientWidth - 22)).toFixed(1)}px,0,0)`;
+    const mid = innerHeight * 0.4;
+    let cur = -1;
+    secs.forEach((s, i) => { if (s && s.getBoundingClientRect().top <= mid) cur = i; });
+    links.forEach((a, i) => a.classList.toggle('here', i === cur));
+  }
+  addEventListener('scroll', update, { passive: true });
+  addEventListener('resize', update);
+  update();
+  menu.addEventListener('click', () => { const open = nav.classList.toggle('open'); menu.setAttribute('aria-expanded', open); });
+  nav.addEventListener('click', e => { if (e.target.closest('a')) { nav.classList.remove('open'); menu.setAttribute('aria-expanded', 'false'); } });
+}
+
+/* ======================================================================
+   HERO FLOOR: a small coverage planner. The robot sweeps every free cell
+   around the text, a spinning lidar maps what it sees, and a click drops
+   or lifts an obstacle so the robot has to replan.
+   ====================================================================== */
+function initFloor() {
+  const hero = $('#top'), cv = $('#floor'), ctx = cv.getContext('2d'), pct = $('#cov');
+  const SPEED = 10;                      // cells per second
+  let W = 0, H = 0, cs = 42, cols = 0, rows = 0, ox = 0, oy = 0, dpr = 1;
+  let grid, cov, reach, total = 0, count = 0;
+  const bot = { i: 0, x: 0, y: 0, fx: 0, fy: 0, tx: 0, ty: 0, t: 0, to: -1, a: 0, hd: 1 };
+  let queue = [], trail = [], dots = new Map(), rays = [], spin = 0, doneAt = 0;
+  let running = false, visible = true, last = 0, col = {};
+
+  const cx = i => ox + (i % cols + 0.5) * cs;
+  const cy = i => oy + (Math.floor(i / cols) + 0.5) * cs;
+  function nb(i) { const c = i % cols, r = (i / cols) | 0, o = []; if (c > 0) o.push(i - 1); if (c < cols - 1) o.push(i + 1); if (r > 0) o.push(i - cols); if (r < rows - 1) o.push(i + cols); return o; }
+
+  function colors() {
+    const s = getComputedStyle(document.documentElement), v = n => s.getPropertyValue(n).trim();
+    col = { sheen: v('--hero-sheen'), soft: v('--hero-trace'), ray: v('--hero-ink'), ink: v('--bot'), floor: v('--hero-bg'), beacon: v('--beacon') };
+  }
+
+  function flood(start) {
+    const seen = new Uint8Array(cols * rows), q = [start]; seen[start] = 1; let n = 0;
+    while (q.length) { const i = q.pop(); n++; for (const k of nb(i)) if (!grid[k] && !seen[k]) { seen[k] = 1; q.push(k); } }
+    return { seen, n };
+  }
+  function recount() { count = 0; for (let i = 0; i < cov.length; i++) if (cov[i] && reach[i]) count++; }
+
+  function build() {
+    const box = hero.getBoundingClientRect();
+    W = box.width; H = box.height; dpr = Math.min(2, devicePixelRatio || 1);
+    cv.width = Math.round(W * dpr); cv.height = Math.round(H * dpr);
+    cs = W < 700 ? 30 : W < 1100 ? 36 : 42;
+    cols = Math.max(4, Math.floor(W / cs)); rows = Math.max(4, Math.floor(H / cs));
+    ox = (W - cols * cs) / 2; oy = (H - rows * cs) / 2;
+    grid = new Uint8Array(cols * rows); cov = new Uint8Array(cols * rows);
+    $$('[data-obstacle]', hero).forEach(el => {
+      const r = el.getBoundingClientRect(), pad = 5;
+      const c0 = clamp(Math.floor((r.left - box.left - pad - ox) / cs), 0, cols - 1), c1 = clamp(Math.floor((r.right - box.left + pad - ox) / cs), 0, cols - 1);
+      const r0 = clamp(Math.floor((r.top - box.top - pad - oy) / cs), 0, rows - 1), r1 = clamp(Math.floor((r.bottom - box.top + pad - oy) / cs), 0, rows - 1);
+      for (let rr = r0; rr <= r1; rr++) for (let cc = c0; cc <= c1; cc++) grid[rr * cols + cc] = 1;
+    });
+    // start in the largest open area, at its top-right, next to the name
+    let best = null; const done = new Uint8Array(cols * rows);
+    for (let i = 0; i < grid.length; i++) {
+      if (grid[i] || done[i]) continue;
+      const f = flood(i); for (let k = 0; k < done.length; k++) if (f.seen[k]) done[k] = 1;
+      if (!best || f.n > best.n) best = f;
+    }
+    if (!best) { reach = new Uint8Array(cols * rows); total = 0; return; }
+    reach = best.seen; total = best.n;
+    let start = -1;
+    for (let r = 0; r < rows && start < 0; r++) for (let c = cols - 1; c >= 0; c--) if (reach[r * cols + c]) { start = r * cols + c; break; }
+    bot.i = start; bot.x = cx(start); bot.y = cy(start); bot.to = -1; bot.hd = -1; bot.a = Math.PI;
+    cov[start] = 1; count = 1; trail = [start]; queue = []; dots = new Map(); rays = []; doneAt = 0;
+  }
+
+  function pick() {
+    if (queue.length) return queue.shift();
+    const i = bot.i, c = i % cols, r = (i / cols) | 0;
+    const ok = (cc, rr) => cc >= 0 && cc < cols && rr >= 0 && rr < rows && reach[rr * cols + cc] && !cov[rr * cols + cc];
+    if (ok(c + bot.hd, r)) return i + bot.hd;
+    if (ok(c - bot.hd, r)) { bot.hd = -bot.hd; return i + bot.hd; }
+    if (ok(c, r + 1)) return i + cols;
+    if (ok(c, r - 1)) return i - cols;
+    // nothing next door: shortest drive to the nearest uncovered cell
+    const prev = new Int32Array(cols * rows).fill(-1), q = [i]; prev[i] = i; let found = -1;
+    for (let h = 0; h < q.length; h++) {
+      const k = q[h]; if (!cov[k]) { found = k; break; }
+      for (const n of nb(k)) if (reach[n] && prev[n] < 0) { prev[n] = k; q.push(n); }
+    }
+    if (found < 0) return -1;
+    const path = []; for (let k = found; k !== i; k = prev[k]) path.push(k);
+    path.reverse(); queue = path; return queue.shift();
+  }
+  function arrive(n) { bot.i = n; trail.push(n); if (!cov[n]) { cov[n] = 1; count++; } }
+
+  function step(dt) {
+    if (!total) return;
+    if (doneAt) { if (performance.now() - doneAt > 2600) { cov.fill(0); cov[bot.i] = 1; count = 1; trail = [bot.i]; queue = []; doneAt = 0; } return; }
+    if (bot.to < 0) {
+      const n = pick();
+      if (n < 0) { doneAt = performance.now(); return; }
+      bot.to = n; bot.fx = bot.x; bot.fy = bot.y; bot.tx = cx(n); bot.ty = cy(n); bot.t = 0;
+    }
+    bot.t += dt * SPEED;
+    const t = Math.min(1, bot.t);
+    bot.x = bot.fx + (bot.tx - bot.fx) * t; bot.y = bot.fy + (bot.ty - bot.fy) * t;
+    let d = Math.atan2(bot.ty - bot.fy, bot.tx - bot.fx) - bot.a; d = Math.atan2(Math.sin(d), Math.cos(d));
+    bot.a += d * Math.min(1, dt * 14);
+    if (bot.t >= 1) { arrive(bot.to); bot.to = -1; }
+  }
+
+  function lidar(dt) {
+    for (let k = 0; k < 3; k++) {
+      spin += 0.09;
+      const dx = Math.cos(spin), dy = Math.sin(spin), max = cs * 7;
+      let x = bot.x, y = bot.y, hit = -1;
+      for (let d = cs * 0.45; d < max; d += 4) {
+        x = bot.x + dx * d; y = bot.y + dy * d;
+        const c = Math.floor((x - ox) / cs), r = Math.floor((y - oy) / cs);
+        if (c < 0 || r < 0 || c >= cols || r >= rows) break;
+        if (grid[r * cols + c]) { hit = r * cols + c; break; }
+      }
+      rays.push({ x, y, l: 1, hit: hit >= 0 });
+      if (hit >= 0 && dots.size < 6000) { const key = ((x / 3) | 0) + ',' + ((y / 3) | 0); if (!dots.has(key)) dots.set(key, [x, y, hit]); }
+    }
+    for (const r of rays) r.l -= dt * 3.2;
+    rays = rays.filter(r => r.l > 0);
+  }
+
+  function rr(x, y, w, h, r) { ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(x, y, w, h, r); else ctx.rect(x, y, w, h); }
+
+  function draw() {
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    if (!total) return;
+    // cleaned lanes
+    ctx.beginPath(); ctx.moveTo(cx(trail[0]), cy(trail[0]));
+    for (let k = 1; k < trail.length; k++) ctx.lineTo(cx(trail[k]), cy(trail[k]));
+    ctx.lineTo(bot.x, bot.y);
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ctx.lineWidth = cs * 0.8; ctx.strokeStyle = col.sheen; ctx.stroke();
+    ctx.lineWidth = 1.25; ctx.setLineDash([2, 7]); ctx.strokeStyle = col.soft; ctx.stroke(); ctx.setLineDash([]);
+    // obstacles you dropped
+    for (let i = 0; i < grid.length; i++) if (grid[i] === 2) {
+      const x = cx(i), y = cy(i);
+      ctx.fillStyle = col.ray; ctx.beginPath(); ctx.arc(x, y, cs * 0.2, 0, 7); ctx.fill();
+      ctx.strokeStyle = col.ray; ctx.lineWidth = 1.5; ctx.beginPath(); ctx.arc(x, y, cs * 0.36, 0, 7); ctx.stroke();
+    }
+    // what the lidar has mapped so far
+    ctx.fillStyle = col.ray; ctx.globalAlpha = 0.55;
+    for (const d of dots.values()) ctx.fillRect(d[0] - 1, d[1] - 1, 2, 2);
+    ctx.globalAlpha = 1;
+    ctx.strokeStyle = col.ray; ctx.lineWidth = 1;
+    for (const r of rays) { ctx.globalAlpha = r.l * (r.hit ? 0.5 : 0.16); ctx.beginPath(); ctx.moveTo(bot.x, bot.y); ctx.lineTo(r.x, r.y); ctx.stroke(); }
+    ctx.globalAlpha = 1;
+    // the robot
+    const R = cs * 0.36;
+    ctx.save(); ctx.translate(bot.x, bot.y);
+    ctx.fillStyle = 'rgba(0,0,0,.2)'; ctx.beginPath(); ctx.arc(1.5, 3.5, R * 1.08, 0, 7); ctx.fill();
+    ctx.rotate(bot.a);
+    ctx.fillStyle = col.ink; rr(-R, -R * 0.84, R * 2, R * 1.68, R * 0.55); ctx.fill();
+    ctx.fillStyle = col.floor; rr(R * 0.5, -R * 0.5, R * 0.24, R, R * 0.12); ctx.fill();
+    ctx.fillStyle = col.beacon; ctx.beginPath(); ctx.arc(-R * 0.25, 0, R * 0.26, 0, 7); ctx.fill();
+    ctx.restore();
+  }
+  function readout() { pct.textContent = (total ? Math.round(100 * count / total) : 0) + '%'; }
+
+  function frame(now) {
+    if (!running) return;
+    const dt = Math.min(0.05, (now - last) / 1000); last = now;
+    step(dt); lidar(dt); draw(); readout();
+    requestAnimationFrame(frame);
+  }
+  function play() { if (running || reduce || !visible || document.hidden) return; running = true; last = performance.now(); requestAnimationFrame(frame); }
+  function pause() { running = false; }
+  // with reduced motion, show the finished run instead of animating it
+  function settle() {
+    let guard = 0, n;
+    while (guard++ < 60000 && (n = pick()) >= 0) arrive(n);
+    bot.x = cx(bot.i); bot.y = cy(bot.i); draw(); readout();
+  }
+  function reset() { colors(); build(); if (reduce) settle(); else { draw(); readout(); play(); } }
+
+  hero.addEventListener('click', e => {
+    if (e.target.closest('a,button') || !total) return;
+    const box = hero.getBoundingClientRect();
+    const c = Math.floor((e.clientX - box.left - ox) / cs), r = Math.floor((e.clientY - box.top - oy) / cs);
+    if (c < 0 || r < 0 || c >= cols || r >= rows) return;
+    const i = r * cols + c;
+    if (grid[i] === 1 || i === bot.i || i === bot.to) return;
+    if (grid[i] === 2) { grid[i] = 0; for (const [k, d] of dots) if (d[2] === i) dots.delete(k); }
+    else { grid[i] = 2; cov[i] = 0; }
+    reach = flood(bot.i).seen; total = 0; for (let k = 0; k < reach.length; k++) total += reach[k];
+    recount(); queue = [];
+    if (doneAt && count < total) doneAt = 0;
+    if (reduce) { cov.fill(0); cov[bot.i] = 1; trail = [bot.i]; recount(); settle(); }
+  });
+
+  let timer;
+  new ResizeObserver(() => { clearTimeout(timer); timer = setTimeout(() => { const b = hero.getBoundingClientRect(); if (Math.abs(b.width - W) > 1 || Math.abs(b.height - H) > 1) reset(); }, 180); }).observe(hero);
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; visible ? play() : pause(); }).observe(hero);
+  document.addEventListener('visibilitychange', () => document.hidden ? pause() : play());
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => { colors(); if (!running) draw(); });
+  new MutationObserver(() => { colors(); if (!running) draw(); }).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'data-palette'] });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(reset);
+  reset();
+}
+
+
+/* ======================================================================
+   OWNER EDITING. Shown only to people who can edit this page on claude.ai.
+   Photos and logos are uploaded to the page's own storage; saving writes
+   a new version of the page with the choices recorded in its data block.
+   ====================================================================== */
+function buildDocument(st) {
+  const data = JSON.stringify(st).replace(/</g, '\\u003c');
+  const open = '<' + 'script', close = '</' + 'script>';
+  return '<!doctype html>\n<html lang="en" data-palette="' + st.palette + '">\n<head>\n' + SRC.head +
+    '\n<style id="site-css">' + SRC.css + '</' + 'style>\n</head>\n<body>\n<div id="site">' + SRC.body + '</div>\n' +
+    open + ' id="site-state" type="application/json">' + data + close + '\n' + open + ' id="site-js">' + SRC.js + close + '\n</body>\n</html>\n';
+}
+
+async function prepare(file, kind) {
+  const asIs = ['image/png', 'image/webp', 'image/gif', 'image/svg+xml', 'image/jpeg'];
+  if (kind === 'logos' && asIs.includes(file.type) && file.size <= 1500000) return file;
+  let bmp;
+  try { bmp = await createImageBitmap(file); } catch (e) { throw { code: 'unreadable' }; }
+  const max = kind === 'photos' ? 1600 : 900, s = Math.min(1, max / Math.max(bmp.width, bmp.height));
+  const c = document.createElement('canvas'); c.width = Math.max(1, Math.round(bmp.width * s)); c.height = Math.max(1, Math.round(bmp.height * s));
+  c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+  return new Promise((ok, no) => c.toBlob(b => b ? ok(b) : no({ code: 'unreadable' }), kind === 'photos' ? 'image/jpeg' : 'image/png', 0.86));
+}
+const UPLOAD_MSG = {
+  too_large: 'That file is too large. Choose an image under 20 MB.',
+  unsupported_type: 'That file type can’t be used. Choose a JPG, PNG, WebP or SVG.',
+  unreadable: 'That image can’t be read. Choose a JPG, PNG, WebP or SVG.',
+  quota_or_state: 'Storage for this page is full. Remove a picture, save, then try again.',
+  rate_limited: 'Uploading too fast. Wait a moment, then try again.'
+};
+const READ_ONLY = ['not_writer', 'not_granted', 'not_declared', 'capability_disabled', 'capability_removed', 'consent_required'];
+
+function initEditing() {
+  if (!window.claude || typeof window.claude.use !== 'function') return;
+  Promise.all([window.claude.use('assets'), window.claude.use('artifact')]).then(([assets, artifact]) => {
+    if (!assets || !artifact) return;
+    const root = document.documentElement;
+    const bar = document.createElement('div'); bar.className = 'edit-bar';
+    const input = document.createElement('input'); input.type = 'file'; input.hidden = true;
+    input.accept = 'image/png,image/jpeg,image/webp,image/gif,image/svg+xml';
+    document.body.append(bar, input);
+    let editing = false, dirty = false, busy = '', target = null, note = '';
+
+    function paint() {
+      const a = document.activeElement, keep = a && bar.contains(a) ? (a.dataset.pal ? `[data-pal="${a.dataset.pal}"]` : `[data-do="${a.dataset.do}"]`) : '';
+      if (!editing) bar.innerHTML = '<button type="button" data-do="start">Edit photos, logos and colors</button>';
+      else bar.innerHTML = PALETTES.map(([k, label, color]) => `<button type="button" data-pal="${k}" aria-pressed="${state.palette === k}"><i style="background:${color}"></i>${label}</button>`).join('') +
+        `<span class="msg" role="status">${esc(note)}</span>` +
+        `<button type="button" data-do="cancel"${busy ? ' disabled' : ''}>${dirty ? 'Discard' : 'Close'}</button>` +
+        `<button type="button" class="primary" data-do="save"${dirty && !busy ? '' : ' disabled'}>${busy === 'save' ? 'Saving' : 'Save changes'}</button>`;
+      const next = keep && $(keep, bar); if (next) next.focus();
+    }
+    function refillAll() { $$('.card').forEach(fillPhoto); $$('.client').forEach(fillLogo); }
+
+    async function save() {
+      busy = 'save'; note = ''; paint();
+      const attempt = () => artifact.publish(buildDocument(state));
+      try {
+        try { await attempt(); }
+        catch (e) {
+          const code = e && e.code;
+          if (code && code !== 'upstream_error') throw e;
+          await new Promise(r => setTimeout(r, 900 + Math.random() * 900));
+          await attempt();
+        }
+        dirty = false; note = 'Saved. The page is reloading.';
+      } catch (e) {
+        const code = e && e.code;
+        if (code === 'conflict') note = 'A newer version was just published. The page is reloading.';
+        else if (READ_ONLY.includes(code)) note = 'This view is read-only, so changes can’t be saved from here.';
+        else if (code === 'rate_limited') note = 'Saving too often. Wait a minute, then save again.';
+        else if (code === 'too_large') note = 'The page is too large to save.';
+        else note = 'The save didn’t go through. Check your connection, then save again.';
+      }
+      busy = ''; paint();
+    }
+
+    bar.addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b || b.disabled) return;
+      if (b.dataset.pal) { state.palette = b.dataset.pal; root.dataset.palette = state.palette; dirty = true; note = 'Palette changed. Save to keep it.'; paint(); return; }
+      const what = b.dataset.do;
+      if (what === 'start') { editing = true; root.classList.add('editing'); note = 'Add a photo to any robot card and a logo to any client.'; paint(); }
+      else if (what === 'cancel') {
+        if (dirty) { state = fresh(SAVED); root.dataset.palette = state.palette; refillAll(); dirty = false; }
+        editing = false; root.classList.remove('editing'); paint();
+      }
+      else if (what === 'save') save();
+    });
+    document.addEventListener('click', e => {
+      const b = e.target.closest('[data-act]'); if (!b || !editing || busy) return;
+      const kind = b.dataset.kind, key = b.dataset.key;
+      if (b.dataset.act === 'pick') { target = { kind, key }; input.value = ''; input.click(); }
+      else { delete state[kind][key]; dirty = true; refill(kind, key); note = 'Removed. Save to keep the change.'; paint(); }
+    });
+    input.addEventListener('change', async () => {
+      const file = input.files && input.files[0]; if (!file || !target) return;
+      const kind = target.kind, key = target.key;
+      busy = 'upload'; note = 'Uploading.'; paint();
+      try {
+        const blob = await prepare(file, kind);
+        const r = await assets.upload(blob, { type: blob.type });
+        liveUrl[r.id] = r.url; state[kind][key] = r.id; dirty = true; refill(kind, key);
+        note = 'Added. Save changes to publish it.';
+      } catch (e) {
+        const code = e && e.code;
+        note = READ_ONLY.includes(code) ? 'This view is read-only, so pictures can’t be added from here.' : (UPLOAD_MSG[code] || 'The upload didn’t go through. Try again.');
+      }
+      busy = ''; paint();
+    });
+    paint();
+  }).catch(() => {});
+}
+
+initHeader();
+initFigures();
+initDeploy();
+initClients();
+initExperience();
+initFloor();
+initEditing();
+})();
+</script>
+</body>
+</html>
