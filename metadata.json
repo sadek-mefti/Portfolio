@@ -1,6 +1,6 @@
 {
   "name": "Portfolio",
-  "description": "",
+  "description": "Portfolio and resume of Sadek Mefti, a Dubai-based technical solutions lead who deploys autonomous robot fleets and builds AI and automation for enterprise clients.",
   "requestFramePermissions": [],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
