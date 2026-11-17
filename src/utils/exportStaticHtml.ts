@@ -557,6 +557,16 @@ export async function generateStandaloneHtmlAndReport(state: PortfolioCustomStat
     }
   });
 
+  // Ensure og:image is an absolute URL when canonicalUrl is provided so LinkedInBot scrapes it reliably
+  const canonicalBase = (seo.canonicalUrl || 'https://sadek-mefti.github.io/Portfolio/').replace(/\/?$/, '/');
+  const rawOgImg = (seo.ogImageUrl || 'og-card.jpg').trim();
+  const resolvedOgImageUrl =
+    rawOgImg.startsWith('http://') || rawOgImg.startsWith('https://')
+      ? rawOgImg === 'https://github.io' || rawOgImg === 'https://github.io/'
+        ? `${canonicalBase}og-card.jpg`
+        : rawOgImg
+      : `${canonicalBase}${rawOgImg.replace(/^\.?\//, '')}`;
+
   // Top-of-<head> OpenGraph, Twitter Cards & Schema.org Person JSON-LD (< 2 KB)
   const headMetaBlock = `<!doctype html>
 <html lang="en" data-palette="${esc(state.palette)}"${themeAttr}>
@@ -567,13 +577,13 @@ export async function generateStandaloneHtmlAndReport(state: PortfolioCustomStat
 <meta name="description" content="${esc(seo.metaDescription)}">
 <meta name="author" content="${esc(hero.firstName + ' ' + hero.lastName)}">
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
-<link rel="canonical" href="${esc(seo.canonicalUrl)}">
+<link rel="canonical" href="${esc(canonicalBase)}">
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="${esc(hero.brandName)} Portfolio">
 <meta property="og:title" content="${esc(seo.siteTitle)}">
 <meta property="og:description" content="${esc(seo.metaDescription)}">
-<meta property="og:url" content="${esc(seo.canonicalUrl)}">
-<meta property="og:image" content="${esc(seo.ogImageUrl)}">
+<meta property="og:url" content="${esc(canonicalBase)}">
+<meta property="og:image" content="${esc(resolvedOgImageUrl)}">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="${esc(seo.siteTitle)}">
@@ -583,7 +593,7 @@ export async function generateStandaloneHtmlAndReport(state: PortfolioCustomStat
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="${esc(seo.siteTitle)}">
 <meta name="twitter:description" content="${esc(seo.metaDescription)}">
-<meta name="twitter:image" content="${esc(seo.ogImageUrl)}">
+<meta name="twitter:image" content="${esc(resolvedOgImageUrl)}">
 <script type="application/ld+json">${personJsonLd}</script>`;
 
   const headMetaBytes = new Blob([headMetaBlock]).size;
@@ -1102,3 +1112,180 @@ export function downloadOgBannerJpg(state: PortfolioCustomState): void {
     0.9
   );
 }
+
+export function getOgBannerJpgBase64(state: PortfolioCustomState): string {
+  const canvas = document.createElement('canvas');
+  renderOgBannerToCanvas(canvas, state);
+  const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+  const commaIdx = dataUrl.indexOf(',');
+  return commaIdx !== -1 ? dataUrl.slice(commaIdx + 1) : dataUrl;
+}
+
+function utf8ToBase64(str: string): string {
+  const bytes = new TextEncoder().encode(str);
+  let binary = '';
+  const chunkSize = 0x8000;
+  for (let i = 0; i < bytes.length; i += chunkSize) {
+    binary += String.fromCharCode(...bytes.subarray(i, i + chunkSize));
+  }
+  return btoa(binary);
+}
+
+export interface GitHubPublishConfig {
+  owner: string;
+  repo: string;
+  branch: string;
+  targetFolder: 'published' | 'root' | 'docs';
+  token: string;
+  commitMessage?: string;
+}
+
+export interface GitHubPublishResult {
+  htmlUrl: string;
+  totalBytes: number;
+  filesCommitted: string[];
+}
+
+async function putGitHubFile(params: {
+  owner: string;
+  repo: string;
+  branch: string;
+  path: string;
+  contentBase64: string;
+  message: string;
+  token: string;
+}): Promise<void> {
+  const { owner, repo, branch, path, contentBase64, message, token } = params;
+  const apiUrl = `https://api.github.com/repos/${encodeURIComponent(owner)}/${encodeURIComponent(repo)}/contents/${path
+    .split('/')
+    .map(encodeURIComponent)
+    .join('/')}`;
+
+  const headers: Record<string, string> = {
+    Accept: 'application/vnd.github+json',
+    Authorization: `Bearer ${token.trim()}`,
+    'X-GitHub-Api-Version': '2022-11-28'
+  };
+
+  // Check if file already exists to get its current SHA
+  let existingSha: string | undefined;
+  const getRes = await fetch(`${apiUrl}?ref=${encodeURIComponent(branch)}`, {
+    method: 'GET',
+    headers
+  });
+  if (getRes.ok) {
+    const data = (await getRes.json()) as { sha?: string };
+    existingSha = data.sha;
+  } else if (getRes.status !== 404) {
+    const errText = await getRes.text();
+    throw new Error(`GitHub API check failed (${getRes.status}): ${errText}`);
+  }
+
+  const putRes = await fetch(apiUrl, {
+    method: 'PUT',
+    headers: {
+      ...headers,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      message,
+      content: contentBase64,
+      branch,
+      ...(existingSha ? { sha: existingSha } : {})
+    })
+  });
+
+  if (!putRes.ok) {
+    const errText = await putRes.text();
+    throw new Error(`GitHub commit failed for ${path} (${putRes.status}): ${errText}`);
+  }
+}
+
+export async function publishPortfolioToGitHub(
+  state: PortfolioCustomState,
+  config: GitHubPublishConfig,
+  onProgress?: (step: string) => void
+): Promise<GitHubPublishResult> {
+  const owner = config.owner.trim();
+  const repo = config.repo.trim();
+  const branch = config.branch.trim() || 'main';
+  const token = config.token.trim();
+
+  if (!owner || !repo || !token) {
+    throw new Error('GitHub Owner, Repository, and Personal Access Token are required.');
+  }
+
+  onProgress?.('Compressing media pool & generating < 3 MB standalone HTML…');
+  const { html, report } = await generateStandaloneHtmlAndReport(state);
+  const htmlBase64 = utf8ToBase64(html);
+
+  onProgress?.('Rendering 1200×630 og-card.jpg social preview banner…');
+  const ogJpgBase64 = getOgBannerJpgBase64(state);
+
+  const prefix =
+    config.targetFolder === 'published'
+      ? 'published/'
+      : config.targetFolder === 'docs'
+      ? 'docs/'
+      : '';
+
+  const commitMsg =
+    config.commitMessage?.trim() ||
+    `Publish portfolio (${(report.totalBytes / 1024).toFixed(0)} KB, LinkedIn-ready)`;
+
+  const filesCommitted: string[] = [];
+
+  const indexPath = `${prefix}index.html`;
+  onProgress?.(`Committing ${indexPath} to ${owner}/${repo}@${branch}…`);
+  await putGitHubFile({
+    owner,
+    repo,
+    branch,
+    path: indexPath,
+    contentBase64: htmlBase64,
+    message: commitMsg,
+    token
+  });
+  filesCommitted.push(indexPath);
+
+  const ogPath = `${prefix}og-card.jpg`;
+  onProgress?.(`Committing ${ogPath} to ${owner}/${repo}@${branch}…`);
+  await putGitHubFile({
+    owner,
+    repo,
+    branch,
+    path: ogPath,
+    contentBase64: ogJpgBase64,
+    message: `${commitMsg} [og-card.jpg]`,
+    token
+  });
+  filesCommitted.push(ogPath);
+
+  // Also save portfolio-state.json in public/published so the hosted /studio/ app stays in sync
+  if (config.targetFolder === 'published') {
+    const stateJsonPath = 'public/portfolio-state.json';
+    onProgress?.(`Syncing Studio state (${stateJsonPath})…`);
+    await putGitHubFile({
+      owner,
+      repo,
+      branch,
+      path: stateJsonPath,
+      contentBase64: utf8ToBase64(JSON.stringify(state)),
+      message: `${commitMsg} [studio-state]`,
+      token
+    });
+    filesCommitted.push(stateJsonPath);
+  }
+
+  const isUserSite = repo.toLowerCase() === `${owner.toLowerCase()}.github.io`;
+  const liveUrl = isUserSite
+    ? `https://${owner}.github.io/`
+    : `https://${owner}.github.io/${repo}/`;
+
+  return {
+    htmlUrl: liveUrl,
+    totalBytes: report.totalBytes,
+    filesCommitted
+  };
+}
+

@@ -891,8 +891,8 @@ export const DEFAULT_SEO: SeoConfig = {
   siteTitle: 'Sadek Mefti — Technical Solutions Lead | Robotics, AI & Automation',
   metaDescription:
     'Official portfolio of Sadek Mefti, Dubai-based Robotics Technical Lead deploying 150+ autonomous commercial robots (AED 15M+) and AI automation across the GCC.',
-  canonicalUrl: 'https://sadekmefti.github.io/',
-  ogImageUrl: 'og-card.jpg',
+  canonicalUrl: 'https://sadek-mefti.github.io/Portfolio/',
+  ogImageUrl: 'https://sadek-mefti.github.io/Portfolio/og-card.jpg',
   ogBannerKicker: 'DUBAI, UAE · ROBOTICS, AI & ENTERPRISE AUTOMATION',
   ogBannerHeadline: 'Sadek Mefti',
   ogBannerSubline: 'Technical Solutions Lead · 150+ Autonomous Robots Deployed (AED 15M+) · AED 40M+ Enterprise Deals',

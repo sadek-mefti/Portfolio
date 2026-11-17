@@ -11,9 +11,12 @@ import {
   ExportBudgetReport,
   LINKEDIN_MAX_BYTES,
   SAFE_CEILING_BYTES,
+  GitHubPublishConfig,
+  GitHubPublishResult,
   generateStandaloneHtmlAndReport,
   renderOgBannerToCanvas,
-  downloadOgBannerJpg
+  downloadOgBannerJpg,
+  publishPortfolioToGitHub
 } from '../utils/exportStaticHtml';
 import { ActiveTextSelection } from './EditableText';
 
@@ -855,3 +858,321 @@ export const LinkedInSeoModal: React.FC<LinkedInSeoModalProps> = ({
     </div>
   );
 };
+
+const GH_CONFIG_STORAGE_KEY = 'sadek_portfolio_gh_publish_config_v1';
+
+interface GitHubPublishModalProps {
+  state: PortfolioCustomState;
+  onExportHtml: () => void;
+  exporting: boolean;
+  onClose: () => void;
+}
+
+export const GitHubPublishModal: React.FC<GitHubPublishModalProps> = ({
+  state,
+  onExportHtml,
+  exporting,
+  onClose
+}) => {
+  const [config, setConfig] = useState<GitHubPublishConfig>(() => {
+    try {
+      const saved = localStorage.getItem(GH_CONFIG_STORAGE_KEY);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        return {
+          owner: parsed.owner || 'sadek-mefti',
+          repo: parsed.repo || 'Portfolio',
+          branch: parsed.branch || 'main',
+          targetFolder: parsed.targetFolder || 'published',
+          token: parsed.token || '',
+          commitMessage: ''
+        };
+      }
+    } catch {
+      // ignore
+    }
+    return {
+      owner: 'sadek-mefti',
+      repo: 'Portfolio',
+      branch: 'main',
+      targetFolder: 'published',
+      token: '',
+      commitMessage: ''
+    };
+  });
+
+  const [publishing, setPublishing] = useState(false);
+  const [progressMsg, setProgressMsg] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+  const [result, setResult] = useState<GitHubPublishResult | null>(null);
+
+  const updateConfig = (patch: Partial<GitHubPublishConfig>) => {
+    setConfig(prev => {
+      const next = { ...prev, ...patch };
+      try {
+        localStorage.setItem(
+          GH_CONFIG_STORAGE_KEY,
+          JSON.stringify({
+            owner: next.owner,
+            repo: next.repo,
+            branch: next.branch,
+            targetFolder: next.targetFolder,
+            token: next.token
+          })
+        );
+      } catch {
+        // ignore
+      }
+      return next;
+    });
+  };
+
+  const handlePublish = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setErrorMsg('');
+    setResult(null);
+    setPublishing(true);
+    try {
+      const res = await publishPortfolioToGitHub(state, config, step => setProgressMsg(step));
+      setResult(res);
+      setProgressMsg('');
+    } catch (err) {
+      setErrorMsg(err instanceof Error ? err.message : String(err));
+      setProgressMsg('');
+    } finally {
+      setPublishing(false);
+    }
+  };
+
+  const isUserSite = config.repo.trim().toLowerCase() === `${config.owner.trim().toLowerCase()}.github.io`;
+  const publicBaseUrl = isUserSite
+    ? `https://${config.owner.trim() || 'sadek-mefti'}.github.io/`
+    : `https://${config.owner.trim() || 'sadek-mefti'}.github.io/${config.repo.trim() || 'Portfolio'}/`;
+  const studioUrl = `${publicBaseUrl}studio/`;
+
+  return (
+    <div
+      className="lightbox-backdrop"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-gh-title"
+      onClick={e => {
+        if (e.target === e.currentTarget) onClose();
+      }}
+    >
+      <div className="lightbox-dialog" style={{ gridTemplateColumns: '1fr', maxWidth: '880px' }}>
+        <div className="lightbox-content">
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', gap: '1rem' }}>
+            <div>
+              <span style={{ fontSize: '0.8125rem', color: 'var(--muted)' }}>
+                Dual GitHub Hosting · Public Portfolio + Online Studio Editor
+              </span>
+              <h3 id="modal-gh-title" className="display" style={{ fontSize: '2.2rem', marginTop: '0.25rem' }}>
+                Publish to GitHub &amp; GitHub Pages
+              </h3>
+            </div>
+            <button
+              type="button"
+              className="btn"
+              style={{ minHeight: '38px', padding: '0 0.85rem' }}
+              onClick={onClose}
+            >
+              Close
+            </button>
+          </div>
+
+          {/* Dual URL Architecture Summary */}
+          <div className="studio-section-box" style={{ display: 'grid', gap: '0.6rem' }}>
+            <h4 style={{ fontWeight: 700, fontSize: '1rem' }}>
+              How Dual Hosting Works on Your Repository ({config.owner}/{config.repo})
+            </h4>
+            <div className="studio-grid-2" style={{ fontSize: '0.8438rem' }}>
+              <div style={{ padding: '0.65rem 0.8rem', borderRadius: '6px', background: 'var(--page)', border: '1px solid var(--line)' }}>
+                <strong style={{ display: 'block', marginBottom: '0.2rem' }}>1. Public Portfolio (LinkedIn &amp; Recruiters)</strong>
+                <code style={{ fontSize: '0.78rem', wordBreak: 'break-all' }}>{publicBaseUrl}</code>
+                <p style={{ color: 'var(--muted)', marginTop: '0.3rem', fontSize: '0.78rem' }}>
+                  Serves your pre-rendered <code>index.html</code> (&lt; 3 MB WebP pool) + <code>og-card.jpg</code> so LinkedInBot, WhatsApp, and X scrape your card immediately.
+                </p>
+              </div>
+              <div style={{ padding: '0.65rem 0.8rem', borderRadius: '6px', background: 'var(--page)', border: '1px solid var(--line)' }}>
+                <strong style={{ display: 'block', marginBottom: '0.2rem' }}>2. Online Studio Editor (For You)</strong>
+                <code style={{ fontSize: '0.78rem', wordBreak: 'break-all' }}>{studioUrl}</code>
+                <p style={{ color: 'var(--muted)', marginTop: '0.3rem', fontSize: '0.78rem' }}>
+                  Built automatically by <code>.github/workflows/deploy.yml</code> so you can open this full editor in your browser from anywhere and publish updates.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 1-Click Direct GitHub API Publisher */}
+          <form onSubmit={handlePublish} className="studio-section-box" style={{ display: 'grid', gap: '0.75rem' }}>
+            <h4 style={{ fontWeight: 700, fontSize: '1.05rem' }}>
+              1-Click Direct Publish to GitHub Repository
+            </h4>
+            <div className="studio-grid-3">
+              <label className="studio-field">
+                <span>GitHub Username / Owner</span>
+                <input
+                  type="text"
+                  className="studio-input"
+                  value={config.owner}
+                  onChange={e => updateConfig({ owner: e.target.value })}
+                  placeholder="sadek-mefti"
+                  required
+                />
+              </label>
+              <label className="studio-field">
+                <span>Repository Name</span>
+                <input
+                  type="text"
+                  className="studio-input"
+                  value={config.repo}
+                  onChange={e => updateConfig({ repo: e.target.value })}
+                  placeholder="Portfolio"
+                  required
+                />
+              </label>
+              <label className="studio-field">
+                <span>Branch</span>
+                <input
+                  type="text"
+                  className="studio-input"
+                  value={config.branch}
+                  onChange={e => updateConfig({ branch: e.target.value })}
+                  placeholder="main"
+                  required
+                />
+              </label>
+            </div>
+
+            <div className="studio-grid-2">
+              <label className="studio-field">
+                <span>Deployment Mode / Target Folder</span>
+                <select
+                  className="studio-input"
+                  value={config.targetFolder}
+                  onChange={e =>
+                    updateConfig({ targetFolder: e.target.value as GitHubPublishConfig['targetFolder'] })
+                  }
+                >
+                  <option value="published">
+                    Dual Mode: published/index.html + /studio/ via GitHub Actions (Recommended)
+                  </option>
+                  <option value="root">
+                    Branch Root: index.html + og-card.jpg at root (e.g., gh-pages branch)
+                  </option>
+                  <option value="docs">
+                    /docs Folder: docs/index.html + docs/og-card.jpg (Deploy from /docs)
+                  </option>
+                </select>
+              </label>
+
+              <label className="studio-field">
+                <span>GitHub Personal Access Token (repo contents write permission)</span>
+                <input
+                  type="password"
+                  className="studio-input"
+                  value={config.token}
+                  onChange={e => updateConfig({ token: e.target.value })}
+                  placeholder="ghp_... or github_pat_..."
+                  required
+                />
+              </label>
+            </div>
+
+            <p style={{ fontSize: '0.78rem', color: 'var(--muted)' }}>
+              Your token is stored only in your own browser&apos;s localStorage and sent directly to{' '}
+              <code>api.github.com</code> to commit <code>index.html</code> and <code>og-card.jpg</code>. (Create one at
+              GitHub → Settings → Developer settings → Personal access tokens → Fine-grained tokens with{' '}
+              <strong>Contents: Read and write</strong> on <code>{config.repo || 'Portfolio'}</code>).
+            </p>
+
+            {progressMsg && (
+              <div
+                style={{
+                  padding: '0.65rem 0.85rem',
+                  borderRadius: '6px',
+                  background: 'var(--page)',
+                  border: '1px solid var(--line)',
+                  fontSize: '0.875rem',
+                  fontWeight: 600
+                }}
+              >
+                {progressMsg}
+              </div>
+            )}
+
+            {errorMsg && (
+              <div
+                style={{
+                  padding: '0.65rem 0.85rem',
+                  borderRadius: '6px',
+                  background: 'rgba(225, 29, 72, 0.1)',
+                  border: '1px solid #E11D48',
+                  color: '#E11D48',
+                  fontSize: '0.8438rem'
+                }}
+              >
+                {errorMsg}
+              </div>
+            )}
+
+            {result && (
+              <div
+                style={{
+                  padding: '0.75rem 0.9rem',
+                  borderRadius: '6px',
+                  background: 'rgba(5, 150, 105, 0.12)',
+                  border: '1px solid #059669',
+                  fontSize: '0.875rem'
+                }}
+              >
+                <strong style={{ color: '#059669', display: 'block' }}>
+                  Published to {config.owner}/{config.repo} ({(result.totalBytes / 1024).toFixed(0)} KB — LinkedIn Ready)
+                </strong>
+                <span style={{ display: 'block', marginTop: '0.25rem', fontSize: '0.8125rem' }}>
+                  Committed: {result.filesCommitted.join(', ')}
+                </span>
+                <span style={{ display: 'block', marginTop: '0.25rem', fontSize: '0.8125rem' }}>
+                  Live Portfolio URL:{' '}
+                  <a href={result.htmlUrl} target="_blank" rel="noopener noreferrer" style={{ fontWeight: 700 }}>
+                    {result.htmlUrl}
+                  </a>
+                </span>
+              </div>
+            )}
+
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '0.65rem', alignItems: 'center' }}>
+              <button
+                type="submit"
+                className="btn solid"
+                style={{ minHeight: '42px', padding: '0 1.2rem' }}
+                disabled={publishing}
+              >
+                {publishing ? 'Publishing to GitHub...' : 'Publish Live to GitHub Pages'}
+              </button>
+              <button
+                type="button"
+                className="btn"
+                style={{ minHeight: '42px', padding: '0 1rem', fontSize: '0.875rem' }}
+                onClick={onExportHtml}
+                disabled={exporting}
+              >
+                {exporting ? 'Packaging...' : 'Download index.html'}
+              </button>
+              <button
+                type="button"
+                className="btn"
+                style={{ minHeight: '42px', padding: '0 1rem', fontSize: '0.875rem' }}
+                onClick={() => downloadOgBannerJpg(state)}
+              >
+                Download og-card.jpg
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+

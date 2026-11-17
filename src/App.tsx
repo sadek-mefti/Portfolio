@@ -10,7 +10,8 @@ import {
   SelectedTextInspectorBar,
   ColorsAndTypographyModal,
   SectionManagerModal,
-  LinkedInSeoModal
+  LinkedInSeoModal,
+  GitHubPublishModal
 } from './components/StudioModals';
 import {
   DEFAULT_PORTFOLIO_CONTENT,
@@ -103,6 +104,28 @@ export default function App() {
   const [showColorsModal, setShowColorsModal] = useState(false);
   const [showSectionsModal, setShowSectionsModal] = useState(false);
   const [showSeoModal, setShowSeoModal] = useState(false);
+  const [showGitHubModal, setShowGitHubModal] = useState(false);
+
+  // If opened on hosted GitHub Pages (/studio/) with empty localStorage, hydrate from published portfolio-state.json
+  useEffect(() => {
+    try {
+      const hasLocal = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('sadek_mefti_portfolio_v2');
+      if (hasLocal) return;
+      fetch('./portfolio-state.json')
+        .then(r => (r.ok ? r.json() : null))
+        .then(remote => {
+          if (remote && remote.content) {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(remote));
+            setState(loadInitialState());
+          }
+        })
+        .catch(() => {
+          // ignore if no remote state file exists yet
+        });
+    } catch {
+      // ignore
+    }
+  }, []);
 
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const uploadTargetRef = useRef<{
@@ -2864,6 +2887,15 @@ export default function App() {
         />
       )}
 
+      {showGitHubModal && (
+        <GitHubPublishModal
+          state={state}
+          onExportHtml={handleExportHtml}
+          exporting={exporting}
+          onClose={() => setShowGitHubModal(false)}
+        />
+      )}
+
       {/* ============ OWNER STUDIO & GITHUB EXPORT DOCK ============ */}
       <input
         ref={fileInputRef}
@@ -2928,6 +2960,10 @@ export default function App() {
 
         <button type="button" onClick={() => setShowSeoModal(true)}>
           LinkedIn &amp; SEO
+        </button>
+
+        <button type="button" onClick={() => setShowGitHubModal(true)}>
+          Publish to GitHub
         </button>
 
         <button type="button" className="primary" onClick={handleExportHtml} disabled={exporting}>

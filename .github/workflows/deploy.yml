@@ -1,0 +1,63 @@
+name: Deploy Portfolio & Studio to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Portfolio Studio App
+        run: npm run build
+
+      - name: Assemble Dual GitHub Pages Artifact (/ = Public Portfolio, /studio/ = Editor)
+        run: |
+          mkdir -p _site/studio
+          cp -r dist/* _site/studio/
+          if [ -f "published/index.html" ]; then
+            echo "Using pre-rendered published/index.html for root GitHub Pages..."
+            cp published/index.html _site/index.html
+            if [ -f "published/og-card.jpg" ]; then
+              cp published/og-card.jpg _site/og-card.jpg
+            fi
+          else
+            echo "No published/index.html yet — copying Studio build to root as initial fallback..."
+            cp -r dist/* _site/
+          fi
+          touch _site/.nojekyll
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
